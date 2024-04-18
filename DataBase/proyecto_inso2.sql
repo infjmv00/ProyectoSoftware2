@@ -62,7 +62,8 @@ PRIMARY KEY (IdRol)
 
 create table tblTrabajadores(
 
-NIFtrab char(15) NOT NULL UNIQUE PRIMARY KEY,
+IdTrabajador int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+NIFtrab char(15) NOT NULL UNIQUE,
 IdRol int(11) NOT NULL,
 id_Empresa int NOT NULL,
 Fecha date NOT NULL,
