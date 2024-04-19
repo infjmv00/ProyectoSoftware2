@@ -11,10 +11,6 @@
 </h:head>
 <h:body>
     
-    <h2>Trabajador Details</h2>
-    
-    
-    
     <div class="card">
     <h:form>
         <p:messages id="messages" showDetail="true" closable="true">
@@ -25,7 +21,7 @@
         
         <p:fieldset legend="Datos personales">
             
-            <p:panelGrid>
+            <p:panelGrid columns="2">
            <p:outputLabel class="headline_class" value ="DNI:  "/>
            <p:inputText value="#" required="true" />
             
@@ -68,7 +64,7 @@
        
         
         <p:fieldset legend="Datos de acceso" toggleable="true" toggleSpeed="500">
-            <p:panelGrid>
+            <p:panelGrid columns="2">
                 
             <div class="field col-12 md:col-4">
                 <p:outputLabel for="@next" value="Tipo de usuario"/>
@@ -82,11 +78,16 @@
             <p:outputLabel class="headline_class" value ="Contraseña"/>
              <p:password id="pwd1" value="#{registroTrabajadorController.trabajador.contrasenya}" match="pwd2" label="Password 1" required="true"/>
             <p:outputLabel class="headline_class" value ="Repita la contrasseña:  "/>
-            <a href="pruebaOneSelect.xhtml"></a>
-            <p:password id="pwd2" value="#" label="Password 2" required="true"/>
+           
+   
+    
             </p:panelGrid>
-            
+        
         </p:fieldset>
+
+       
+        
+        
         <p:commandButton  value ="insertar" actionListener="#{registroTrabajadorController.insertarTrabajador()}"/>
     </h:form>
 </div>
