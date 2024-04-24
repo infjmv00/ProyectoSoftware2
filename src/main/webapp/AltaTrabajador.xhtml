@@ -27,39 +27,39 @@
             
             <p:panelGrid>
            <p:outputLabel class="headline_class" value ="DNI:  "/>
-           <p:inputText value="#" required="true" />
+           <p:inputText value="#{altaTrabajadorController.trabajador.dni_trabajador}" required="true" />
             
             <p:outputLabel  value ="Fecha de nacimiento:  "/>
-            <p:calendar id="button" value="#" showOn="button" required="true"/>
+            <p:calendar id="button" value="#{altaTrabajadorController.trabajador.fecha_nacimiento}" showOn="button" required="true"/>
             
             <p:outputLabel  value ="Nombre:  "/>
-            <p:inputText value="#" required="true"/>
+            <p:inputText value="#{altaTrabajadorController.trabajador.nombre_trabajador}" required="true"/>
             <p:outputLabel value ="apellidos:  "/>
-            <p:inputText value="#" required="true"/>
+            <p:inputText value="#{altaTrabajadorController.trabajador.apellidos_trabajador}" required="true"/>
             <p:outputLabel  value ="Direccion:  "/>
-            <p:inputText value="#" required="true" />
+            <p:inputText value="#{altaTrabajadorController.trabajador.direccion_trabajador}" required="true" />
             <p:outputLabel  value ="Telefono:  "/>
-            <p:inputText value="#" required="true" />
+            <p:inputText value="#{altaTrabajadorController.trabajador.email_trabajador}" required="true" />
             <p:outputLabel  value ="Correo electronico:  "/>
             <p:inputText value="#" required="true"/>
             
             <div class="field col-12 md:col-4">
                 <p:outputLabel for="@next" value="Empresa"/>
-                <p:selectOneMenu id="pertenenciaEmpresa" value="" dynamic="true">
+                <p:selectOneMenu id="pertenenciaEmpresa" value="#{altaTrabajadorController.empresa}" dynamic="true">
                     <f:selectItem itemLabel="Select One" itemValue=""/>
-                    <f:selectItems value="#"/>
+                    <f:selectItems value="#{altaTrabajadorController.listaIdEmpresas}"/>
                 </p:selectOneMenu>
             </div>
-            
+          
             
             <p:outputLabel  value ="Fecha de inicio de contrato:  "/>
-            <p:calendar id="button2" value="#" showOn="button" required="true"/>
+            <p:calendar id="button2" value="#{altaTrabajadorController.trabajador.fecha_inicio}" showOn="button" required="true"/>
             
             
             <p:outputLabel  value ="Fecha de fin de contrato:  "/>
-            <p:calendar id="button3" value="#" showOn="button" required="true"/>
+            <p:calendar id="button3" value="#{altaTrabajadorController.trabajador.fecha_fin}" showOn="button" required="true"/>
                     
-            <p:selectBooleanCheckbox value="#" itemLabel="Activo"/>
+            <p:selectBooleanCheckbox value="#{altaTrabajadorController.trabajador.activo}" itemLabel="Activo"/>
            
             
             </p:panelGrid>
@@ -72,22 +72,22 @@
                 
             <div class="field col-12 md:col-4">
                 <p:outputLabel for="@next" value="Tipo de usuario"/>
-                <p:selectOneMenu id="tipoUsuario" value="#{registroTrabajadorController.trabajador.rol}" dynamic="true">
+                <p:selectOneMenu id="tipoUsuario" value="#{altaTrabajadorController.rol.idRol}" dynamic="true">
                     <f:selectItem itemLabel="Select One" itemValue=""/>
-                    <f:selectItems value="#{selectOneRolController.options}"/>
+                    <f:selectItems value="#{altaTrabajadorController.listaIdRoles}" var="rol" />
                 </p:selectOneMenu>
             </div>
             <p:outputLabel class="headline_class" value ="Usuario:  "/>
             <p:inputText value="#" required="true" />
             <p:outputLabel class="headline_class" value ="Contraseña"/>
-             <p:password id="pwd1" value="#{registroTrabajadorController.trabajador.contrasenya}" match="pwd2" label="Password 1" required="true"/>
+             <p:password id="pwd1" value="#{altaTrabajadorController.trabajador.contrasenya}" match="pwd2" label="Password 1" required="true"/>
             <p:outputLabel class="headline_class" value ="Repita la contrasseña:  "/>
             <a href="pruebaOneSelect.xhtml"></a>
             <p:password id="pwd2" value="#" label="Password 2" required="true"/>
             </p:panelGrid>
             
         </p:fieldset>
-        <p:commandButton  value ="insertar" actionListener="#{registroTrabajadorController.insertarTrabajador()}"/>
+        <p:commandButton  value ="insertar" actionListener="#{altaTrabajadorController.insertarTrabajador()}"/>
     </h:form>
 </div>
     
