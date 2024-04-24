@@ -38,7 +38,7 @@ public class AltaEmpresaController implements Serializable{
         
          try{
             empresaEJB.create(empresa);
-            System.out.println(empresa.getNombre_empresa()+ "Insertada correctamente");
+            System.out.println(empresa.getNombre_empresa()+ " Insertada correctamente");
         } catch(Exception e){
             
             System.out.println("Error al insertar empresa en la base de datos "+ e.getMessage());
