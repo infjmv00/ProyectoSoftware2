@@ -24,7 +24,7 @@ import javax.persistence.Table;
 public class Empresa implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idRol;
+    private int idEmpresa;
   
     @Column(name="CIF_Empresa")
     private String cif_empresa;
@@ -38,41 +38,26 @@ public class Empresa implements Serializable {
     private String email;
     @Column(name="activaEmpresa")
     private boolean activaEmpresa;
-    
-     
-   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    /*
-    create table  tblDatos_Empresa(
 
-IdEmpresa int NOT NULL AUTO_INCREMENT primary key,
-CIF_Empresa CHAR(20) NOT NULL,
-nombre_empresa char(50) NOT NULL,
-direccion_empresa char(50) NOT NULL,
-Telefono_empresa bigint NOT NULL,
-e_mail char(50),
-activaempresa bit);
-    
-    */
 
-    public int getIdRol() {
-        return idRol;
+    
+
+    public int getIdEmpresa() {
+        return idEmpresa;
     }
 
-    public void setIdRol(int idRol) {
-        this.idRol = idRol;
+    /*
+    create table  tblDatos_Empresa(
+    IdEmpresa int NOT NULL AUTO_INCREMENT primary key,
+    CIF_Empresa CHAR(20) NOT NULL,
+    nombre_empresa char(50) NOT NULL,
+    direccion_empresa char(50) NOT NULL,
+    Telefono_empresa bigint NOT NULL,
+    e_mail char(50),
+    activaempresa bit);
+     */
+    public void setIdEmpresa(int idEmpresa) {
+        this.idEmpresa = idEmpresa;
     }
 
     public String getCif_empresa() {
@@ -126,13 +111,13 @@ activaempresa bit);
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 13 * hash + this.idRol;
-        hash = 13 * hash + Objects.hashCode(this.cif_empresa);
-        hash = 13 * hash + Objects.hashCode(this.nombre_empresa);
-        hash = 13 * hash + Objects.hashCode(this.direccion_empresa);
-        hash = 13 * hash + this.telefono_empresa;
-        hash = 13 * hash + Objects.hashCode(this.email);
-        hash = 13 * hash + (this.activaEmpresa ? 1 : 0);
+        hash = 59 * hash + this.idEmpresa;
+        hash = 59 * hash + Objects.hashCode(this.cif_empresa);
+        hash = 59 * hash + Objects.hashCode(this.nombre_empresa);
+        hash = 59 * hash + Objects.hashCode(this.direccion_empresa);
+        hash = 59 * hash + this.telefono_empresa;
+        hash = 59 * hash + Objects.hashCode(this.email);
+        hash = 59 * hash + (this.activaEmpresa ? 1 : 0);
         return hash;
     }
 
@@ -148,7 +133,7 @@ activaempresa bit);
             return false;
         }
         final Empresa other = (Empresa) obj;
-        if (this.idRol != other.idRol) {
+        if (this.idEmpresa != other.idEmpresa) {
             return false;
         }
         if (this.telefono_empresa != other.telefono_empresa) {
@@ -171,6 +156,8 @@ activaempresa bit);
         }
         return true;
     }
-    
+
+   
+   
     
 }
