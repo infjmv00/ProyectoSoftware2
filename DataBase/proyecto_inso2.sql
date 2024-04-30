@@ -180,3 +180,4 @@ constraint FK_tblTrabEj_trabajador foreign key (trabajador) references tblTrabaj
 
   
   CONSTRAINT FK_tblstockproductos_tblproductos FOREIGN KEY (IdMaterial) REFERENCES tblMateriales (codigo_material));
+tbldatos_empresa

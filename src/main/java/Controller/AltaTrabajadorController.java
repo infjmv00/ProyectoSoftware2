@@ -30,6 +30,15 @@ import javax.inject.Named;
 @ViewScoped
 public class AltaTrabajadorController implements Serializable {
     
+    @EJB
+    private TrabajadorFacadeLocal trabajadorEJB;
+    
+    @EJB
+    private EmpresaFacadeLocal empresaEJB;
+    
+    @EJB
+    private RolFacadeLocal rolEJB;
+    
     @Inject
     private Trabajador trabajador;
     
@@ -41,14 +50,6 @@ public class AltaTrabajadorController implements Serializable {
     
     
     
-    @EJB
-    private TrabajadorFacadeLocal trabajadorEJB;
-    
-    @EJB
-    private EmpresaFacadeLocal empresaEJB;
-    
-    @EJB
-    private RolFacadeLocal rolEJB;
     
     
     private List<Rol> listaRoles;
@@ -78,17 +79,18 @@ public class AltaTrabajadorController implements Serializable {
     public void insertarTrabajador(){
     
         System.out.println("Nombre del trabajador: "+trabajador.getNombre_trabajador());
-      /* try{
-           trabajador.setRol(rol);
+        try{
+         //  trabajador.setRol(rol);
            trabajador.setEmpresa(empresa);
       
           System.out.println("aparentemente insertas");
+            trabajador.setRol(rol);
             trabajadorEJB.create(trabajador);
             System.out.println(trabajador.getNombre_trabajador()+ " insertado correctamente");
         } catch(Exception e){
             
             System.out.println("Error al insertar trabajador en la base de datos "+ e.getMessage());
-        }*/
+        }
     }
 
     public Trabajador getTrabajador() {
