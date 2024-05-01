@@ -24,9 +24,9 @@ import javax.persistence.Table;
 public class Empresa implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idEmpresa;
-  
-    @Column(name="CIF_Empresa")
+    
+    private int IdEmpresa;
+      @Column(name="CIF_Empresa")
     private String cif_empresa;
     @Column(name="nombre_empresa")
     private String nombre_empresa;
@@ -42,9 +42,7 @@ public class Empresa implements Serializable {
 
     
 
-    public int getIdEmpresa() {
-        return idEmpresa;
-    }
+   
 
     /*
     create table  tblDatos_Empresa(
@@ -56,8 +54,13 @@ public class Empresa implements Serializable {
     e_mail char(50),
     activaempresa bit);
      */
-    public void setIdEmpresa(int idEmpresa) {
-        this.idEmpresa = idEmpresa;
+
+    public int getIdEmpresa() {
+        return IdEmpresa;
+    }
+
+    public void setIdEmpresa(int IdEmpresa) {
+        this.IdEmpresa = IdEmpresa;
     }
 
     public String getCif_empresa() {
@@ -111,13 +114,13 @@ public class Empresa implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 59 * hash + this.idEmpresa;
-        hash = 59 * hash + Objects.hashCode(this.cif_empresa);
-        hash = 59 * hash + Objects.hashCode(this.nombre_empresa);
-        hash = 59 * hash + Objects.hashCode(this.direccion_empresa);
-        hash = 59 * hash + this.telefono_empresa;
-        hash = 59 * hash + Objects.hashCode(this.email);
-        hash = 59 * hash + (this.activaEmpresa ? 1 : 0);
+        hash = 29 * hash + this.IdEmpresa;
+        hash = 29 * hash + Objects.hashCode(this.cif_empresa);
+        hash = 29 * hash + Objects.hashCode(this.nombre_empresa);
+        hash = 29 * hash + Objects.hashCode(this.direccion_empresa);
+        hash = 29 * hash + this.telefono_empresa;
+        hash = 29 * hash + Objects.hashCode(this.email);
+        hash = 29 * hash + (this.activaEmpresa ? 1 : 0);
         return hash;
     }
 
