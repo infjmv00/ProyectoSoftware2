@@ -63,7 +63,8 @@ public class AltaTrabajadorController implements Serializable {
     public void init(){
         
         trabajador = new Trabajador();
-       
+         rol = new Rol(); // Inicializar el objeto rol
+        empresa = new Empresa(); // Inicializar el objeto empresa       
         listaRoles = rolEJB.findAll();
         listaEmpresas = empresaEJB.findAll();
         listaIdRoles = new ArrayList();
@@ -81,10 +82,11 @@ public class AltaTrabajadorController implements Serializable {
         System.out.println("Nombre del trabajador: "+trabajador.getNombre_trabajador());
         try{
          //  trabajador.setRol(rol);
+           trabajador.setRol(rol);
            trabajador.setEmpresa(empresa);
       
           System.out.println("aparentemente insertas");
-            trabajador.setRol(rol);
+            //trabajador.setRol(rol);
             trabajadorEJB.create(trabajador);
             System.out.println(trabajador.getNombre_trabajador()+ " insertado correctamente");
         } catch(Exception e){
