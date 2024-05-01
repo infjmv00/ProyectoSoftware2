@@ -1,94 +1,112 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
 <head>
-  <title>OPCIONES</title>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f8f9fa;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
+    <title>PROPIETARIO</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-    .container {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-gap: 20px;
-      align-items: center;
-      width: 90%;
-      margin-top: 20px; /* Ajuste para que el contenido no toque los bordes de la ventana */
-    }
+        .container {
+            width: 95%;
+            max-width: 500px;
+            padding: 20px;
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .user-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px; /* Reduced bottom margin */
+        }
 
-    .dropdown-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-gap: 20px;
-      align-items: start; /* Cambio para permitir que los contenidos de menor tamaño se alineen arriba y no se estiren */
-      width: 100%;
-    }
+        .dropdown-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 20px;
+            align-items: start;
+            width: 100%;
+        }
 
-    .dropdown-column {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start; /* Asegura que el contenido comienza desde arriba */
-    }
+        .dropdown {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
 
-    .dropdown {
-      margin-bottom: 20px;
-    }
+        .logout-button {
+             padding: 8px 15px;
+            font-size: 0.85rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 15px;
+        }
 
-    .logout-button {
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
+        .logout-button:hover {
+            background-color: #0056b3;
+        }
 
-    .logout-button:hover {
-      background-color: #0056b3;
-    }
+        select {
+             padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 0.85rem; /* Adjusted font size */
+            transition: border-color 0.3s;
+        }
 
-    select {
-      width: 200px;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
+        select:hover, select:focus {
+            border-color: #007bff;
+        }
 
-    select:hover, select:focus {
-      border-color: #007bff;
-    }
+        h2 {
+            font-family: 'Segoe UI', sans-serif;
+            color: #444;
+            font-size: 1.1rem; /* Adjusted font size */
+            margin: 0;
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
 
-    h2, h3 {
-      font-family: 'Segoe UI', sans-serif;
-      color: #333;
-    }
+        h3 {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 1rem; /* Adjusted font size */
+            color: #555;
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
 
-    .dropdown-label {
-      font-weight: bold;
-      color: #666;
-    }
-
-  </style>
+        .dropdown-label {
+            font-weight: bold;
+            color: #666;
+            margin-bottom: 3px;
+        }
+    </style>
 </head>
 <h:body>
     <div class="container">
-        <div>
-            <h2>Usuario</h2>
-        </div>
-        <div>
+        <div class="user-info">
+            <h2>PROPIETARIO</h2>
             <button class="logout-button">Desconectar</button>
         </div>
-    </div>
-    <h2>OPCIONES</h2>
-    <div class="dropdown-container">
-        <div class="dropdown-column">
+    
+        <div class="dropdown-container">
             <div class="dropdown">
                 <label class="dropdown-label" for="dropdown1">PRESUPUESTOS</label>
                 <select id="dropdown1">
@@ -129,57 +147,19 @@
                 <label class="dropdown-label" for="dropdown5">FAMILIAS PRODUCTOS</label>
                 <select id="dropdown5">
                     <option value="option0">Elegir</option>
-                    <option value="option1">Añadir</option
-                    <option value="option2">Modificar</option>
-                    <option value="option3">Eliminar</option>
-                </select>
-            </div>
-        </div>
-        <div class="dropdown-column">
-            <div class="dropdown">
-                <label class="dropdown-label" for="dropdown6">CLIENTES</label>
-                <select id="dropdown6">
-                    <option value="option0">Elegir</option>
                     <option value="option1">Añadir</option>
                     <option value="option2">Modificar</option>
                     <option value="option3">Eliminar</option>
                 </select>
             </div>
             <div class="dropdown">
-                <label class="dropdown-label" for="dropdown7">GESTIÓN TIENDAS</label>
-                <select id="dropdown7">
-                    <option value="option0">Elegir</option>
-                    <option value="option1">Añadir</option
-                    <option value="option2">Modificar</option>
-                    <option value="option3">Eliminar</option>
-                </select>
+                 <label class="dropdown-label" for="dropdown5">CONSULTAR</label>
+                <button class="logout-button">PROVEEDORES</button>
+                <button class="logout-button">EMPLEADOS</button>
             </div>
             <div class="dropdown">
-                <label class="dropdown-label" for="dropdown8">STOCK MATERIALES</label>
-                <select id="dropdown8">
-                    <option value="option0">Elegir</option>
-                    <option value="option1">Añadir</option>
-                    <option value="option2">Modificar</option>
-                    <option value="option3">Eliminar</option>
-                </select>
-            </div>
-            <div class="dropdown">
-                <label class="dropdown-label" for="dropdown9">TRABAJOS EJECUTADOS</label>
-                <select id="dropdown9">
-                    <option value="option0">Elegir</option>
-                    <option value="option1">Añadir</option>
-                    <option value="option2">Modificar</option>
-                    <option value="option3">Eliminar</option>
-                </select>
-            </div>
-            <div class="dropdown">
-                <label class="dropdown-label" for="dropdown10">MATERIAL USADO</label>
-                <select id="dropdown10">
-                    <option value="option0">Elegir</option>
-                    <option value="option1">Añadir</option>
-                    <option value="option2">Modificar</option>
-                    <option value="option3">Eliminar</option>
-                </select>
+                 <label class="dropdown-label" for="dropdown5">BÚSQUEDA</label>
+                <button class="logout-button">MEJOR EMPLEADO MES</button>
             </div>
         </div>
     </div>
