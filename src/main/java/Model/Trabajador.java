@@ -26,6 +26,7 @@ import javax.persistence.Table;
 @Table(name="tblTrabajadores")
 public class Trabajador implements Serializable {
     
+
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -294,7 +295,6 @@ activotrab bit,*/
         }
         return true;
     }
-    
     
 }
 

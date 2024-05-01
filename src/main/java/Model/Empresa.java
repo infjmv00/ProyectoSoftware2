@@ -113,14 +113,14 @@ public class Empresa implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + this.IdEmpresa;
-        hash = 29 * hash + Objects.hashCode(this.cif_empresa);
-        hash = 29 * hash + Objects.hashCode(this.nombre_empresa);
-        hash = 29 * hash + Objects.hashCode(this.direccion_empresa);
-        hash = 29 * hash + this.telefono_empresa;
-        hash = 29 * hash + Objects.hashCode(this.email);
-        hash = 29 * hash + (this.activaEmpresa ? 1 : 0);
+        int hash = 3;
+        hash = 47 * hash + this.IdEmpresa;
+        hash = 47 * hash + Objects.hashCode(this.cif_empresa);
+        hash = 47 * hash + Objects.hashCode(this.nombre_empresa);
+        hash = 47 * hash + Objects.hashCode(this.direccion_empresa);
+        hash = 47 * hash + this.telefono_empresa;
+        hash = 47 * hash + Objects.hashCode(this.email);
+        hash = 47 * hash + (this.activaEmpresa ? 1 : 0);
         return hash;
     }
 
@@ -136,7 +136,7 @@ public class Empresa implements Serializable {
             return false;
         }
         final Empresa other = (Empresa) obj;
-        if (this.idEmpresa != other.idEmpresa) {
+        if (this.IdEmpresa != other.IdEmpresa) {
             return false;
         }
         if (this.telefono_empresa != other.telefono_empresa) {
@@ -160,6 +160,7 @@ public class Empresa implements Serializable {
         return true;
     }
 
+   
    
    
     
