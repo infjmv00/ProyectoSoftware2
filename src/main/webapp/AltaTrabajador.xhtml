@@ -65,13 +65,11 @@
                    
                     
                    <div class="field col-12 md:col-4">
-                    <p:outputLabel for ="cboRol" value="Rol"/>
-                    <p:selectOneMenu id="cboRol" value="#{altaTrabajadorController.rol.idRol}">
-                        <f:selectItems value="#{altaTrabajadorController.listaRoles}" var="rol" itemLabel="#{rol.rol}" itemValue="#{rol.idRol}" />
-                    </p:selectOneMenu>
-
-
-            </div>
+                        <p:outputLabel for ="cboRol" value="Rol"/>
+                        <p:selectOneMenu id="cboRol" value="#{altaTrabajadorController.rol.idRol}">
+                            <f:selectItems value="#{altaTrabajadorController.listaRoles}" var="rol" itemLabel="#{rol.rol}" itemValue="#{rol.idRol}" />
+                        </p:selectOneMenu>
+                   </div>
                     
                     <p:outputLabel for="nombreUsuario" value="Usuario:" />
                     <p:inputText id="nombreUsuario" value="#{altaTrabajadorController.trabajador.usuario}" required="true" />
