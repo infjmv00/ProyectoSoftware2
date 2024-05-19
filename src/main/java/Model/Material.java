@@ -30,6 +30,7 @@ public class Material implements Serializable {
 
     @Column(name = "codigo_material")
     private String codigo_material;
+    
     @Column(name = "descripcion")
     private String descripcion;
 
