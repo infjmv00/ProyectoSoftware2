@@ -38,9 +38,6 @@ public class Empresa implements Serializable {
     private String email;
     @Column(name="activaEmpresa")
     private boolean activaEmpresa;
-
-
-
     public int getIdEmpresa() {
         return IdEmpresa;
     }
@@ -145,7 +142,5 @@ public class Empresa implements Serializable {
         }
         return true;
     }
-
-   
     
 }
