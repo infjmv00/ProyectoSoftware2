@@ -30,7 +30,7 @@ public class TrabajoRealizado implements Serializable{
     
    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
-private int cod_trabajo;
+    private int cod_trabajo;
    
     @Column(name = "fecha_inicio")
     private Date fecha_inicio;
