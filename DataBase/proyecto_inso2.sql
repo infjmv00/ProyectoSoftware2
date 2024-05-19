@@ -1,4 +1,4 @@
-<<<<<<< OURS
+
 create database GESTEMPRESARIAL;
 use GESTEMPRESARIAL;
 
@@ -240,7 +240,11 @@ PRIMARY KEY (IdRol)
 
 create table tblTrabajadores(
 
+<<<<<<< HEAD
 IdTrabajador int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+=======
+IdTrabajador int NOT NULL AUTO_INCREMENT primary key,
+>>>>>>> Modelos
 NIFtrab char(15) NOT NULL UNIQUE,
 IdRol int(11) NOT NULL,
 id_Empresa int NOT NULL,
@@ -358,4 +362,4 @@ constraint FK_tblTrabEj_trabajador foreign key (trabajador) references tblTrabaj
 
   
   CONSTRAINT FK_tblstockproductos_tblproductos FOREIGN KEY (IdMaterial) REFERENCES tblMateriales (codigo_material));
->>>>>>> THEIRS
+
