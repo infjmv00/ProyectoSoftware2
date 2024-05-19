@@ -279,10 +279,4 @@ public class Trabajador implements Serializable {
         return true;
     }
      
-   
-   
-
-    
-    
 }
-
