@@ -172,3 +172,15 @@ constraint FK_tblTrabEj_trabajador foreign key (trabajador) references tblTrabaj
   CantidadPteRecibir  int NOT NULL DEFAULT '0',
   CantidadTotal int NOT NULL DEFAULT '0',  
   CONSTRAINT FK_tblstockproductos_tblproductos FOREIGN KEY (IdMaterial) REFERENCES tblMateriales (IdMaterial));
+
+CREATE TABLE menu (
+    idMenu INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    idRol INT(11) NOT NULL,
+    nombre VARCHAR(50),
+    tipo ENUM('S', 'I'), 
+    codigo_submenu INT,
+    estado BIT,
+    CONSTRAINT FK_tblmenu_tblRoles FOREIGN KEY (idRol) REFERENCES tblRoles (IdRol),
+    CONSTRAINT FK_Menu_Item FOREIGN KEY (codigo_submenu) REFERENCES menu (idMenu) ON UPDATE RESTRICT ON DELETE RESTRICT
+);
+  
