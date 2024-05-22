@@ -1,3 +1,4 @@
+
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
 -- Versión del servidor:         8.3.0 - MySQL Community Server - GPL
@@ -109,6 +110,21 @@ CREATE TABLE IF NOT EXISTS `tblmateriales` (
   CONSTRAINT `FK_tblMateriales_tbFamilia` FOREIGN KEY (`IdFamilia`) REFERENCES `tblfamilias` (`IdFamilia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- Volcando estructura para tabla gestempresarial.tblroles
+CREATE TABLE IF NOT EXISTS `tblroles` (
+  `IdRol` int NOT NULL AUTO_INCREMENT,
+  `TipoRol` char(1) NOT NULL,
+  `descripcion` varchar(100) NOT NULL,
+  PRIMARY KEY (`IdRol`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Volcando datos para la tabla gestempresarial.tblroles: ~3 rows (aproximadamente)
+DELETE FROM `tblroles`;
+INSERT INTO `tblroles` (`IdRol`, `TipoRol`, `descripcion`) VALUES
+	(1, 'P', 'Propietario'),
+	(2, 'E', 'Empleado'),
+	(3, 'A', 'Administrador');
+
 -- Volcando datos para la tabla gestempresarial.tblmateriales: ~0 rows (aproximadamente)
 DELETE FROM `tblmateriales`;
 
@@ -126,8 +142,13 @@ CREATE TABLE IF NOT EXISTS `tblmaterialproveedor` (
   CONSTRAINT `FK_TMP_prov` FOREIGN KEY (`CIFpro`) REFERENCES `tblproveedores` (`IdProveedor`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla gestempresarial.tblmaterialproveedor: ~0 rows (aproximadamente)
-DELETE FROM `tblmaterialproveedor`;
+create table tblTieneTrabajos(
+    id_trabajo INT NOT NULL,
+    id_tarea INT NOT NULL,
+    importe_ud integer,
+    
+    constraint FK_tblTTcod_trab foreign key (id_trabajo) references tblTrabajosRealizados (cod_trabajo) ON UPDATE CASCADE,
+    constraint FK_tblTTcod_tarea foreign key (id_tarea) references tblPosiblesTrabajos (id_tarea) ON UPDATE CASCADE);
 
 -- Volcando estructura para tabla gestempresarial.tblmaterialusado
 CREATE TABLE IF NOT EXISTS `tblmaterialusado` (
@@ -157,159 +178,10 @@ CREATE TABLE IF NOT EXISTS `tblposiblestrabajos` (
 -- Volcando datos para la tabla gestempresarial.tblposiblestrabajos: ~0 rows (aproximadamente)
 DELETE FROM `tblposiblestrabajos`;
 
--- Volcando estructura para tabla gestempresarial.tblpresupuestos
-CREATE TABLE IF NOT EXISTS `tblpresupuestos` (
-  `n_presupuesto` int NOT NULL AUTO_INCREMENT,
-  `id_Cliente` int NOT NULL,
-  `descripcion` text,
-  `cantidad` int NOT NULL,
-  `tipo` char(10) DEFAULT NULL,
-  `iva_aplicado` tinyint DEFAULT '21',
-  PRIMARY KEY (`n_presupuesto`),
-  KEY `FK_tblPresupuestos_NIF` (`id_Cliente`),
-  CONSTRAINT `FK_tblPresupuestos_NIF` FOREIGN KEY (`id_Cliente`) REFERENCES `tblclientes` (`id_Cliente`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- Volcando datos para la tabla gestempresarial.tblpresupuestos: ~0 rows (aproximadamente)
-DELETE FROM `tblpresupuestos`;
-
--- Volcando estructura para tabla gestempresarial.tblproveedores
-CREATE TABLE IF NOT EXISTS `tblproveedores` (
-  `IdProveedor` int NOT NULL AUTO_INCREMENT,
-  `CIFprov` char(15) NOT NULL,
-  `nombreprov` char(20) NOT NULL,
-  `apellidosprov` char(30) NOT NULL,
-  `direccion` char(50) NOT NULL,
-  `Telefonoprov` bigint NOT NULL,
-  `e_mail` char(50) DEFAULT NULL,
-  `activoprov` bit(1) DEFAULT NULL,
-  PRIMARY KEY (`IdProveedor`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- Volcando datos para la tabla gestempresarial.tblproveedores: ~0 rows (aproximadamente)
-DELETE FROM `tblproveedores`;
-
--- Volcando estructura para tabla gestempresarial.tblroles
-CREATE TABLE IF NOT EXISTS `tblroles` (
-  `IdRol` int NOT NULL AUTO_INCREMENT,
-  `TipoRol` char(1) NOT NULL,
-  `descripcion` varchar(100) NOT NULL,
-  PRIMARY KEY (`IdRol`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- Volcando datos para la tabla gestempresarial.tblroles: ~3 rows (aproximadamente)
-DELETE FROM `tblroles`;
-INSERT INTO `tblroles` (`IdRol`, `TipoRol`, `descripcion`) VALUES
-	(1, 'P', 'Propietario'),
-	(2, 'E', 'Empleado'),
-	(3, 'A', 'Administrador');
-
--- Volcando estructura para tabla gestempresarial.tblstockmateriales
-CREATE TABLE IF NOT EXISTS `tblstockmateriales` (
-  `IdStock` int NOT NULL AUTO_INCREMENT,
-  `IdMaterial` int NOT NULL DEFAULT '0',
-  `CantidadReal` int NOT NULL DEFAULT '0',
-  `CantidadPteRecibir` int NOT NULL DEFAULT '0',
-  `CantidadTotal` int NOT NULL DEFAULT '0',
-  PRIMARY KEY (`IdStock`),
-  KEY `FK_tblstockproductos_tblproductos` (`IdMaterial`),
-  CONSTRAINT `FK_tblstockproductos_tblproductos` FOREIGN KEY (`IdMaterial`) REFERENCES `tblmateriales` (`IdMaterial`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- Volcando datos para la tabla gestempresarial.tblstockmateriales: ~0 rows (aproximadamente)
-DELETE FROM `tblstockmateriales`;
-
--- Volcando estructura para tabla gestempresarial.tblsueldos
-CREATE TABLE IF NOT EXISTS `tblsueldos` (
-  `IdTrabajador` int NOT NULL,
-  `fecha` date NOT NULL,
-  `enbruto` float NOT NULL,
-  `gastosirpf` float DEFAULT NULL,
-  `seguridad_social` float DEFAULT NULL,
-  `primas` float DEFAULT NULL,
-  `total` float NOT NULL,
-  KEY `FK_tblSueldos_NIF` (`IdTrabajador`),
-  CONSTRAINT `FK_tblSueldos_NIF` FOREIGN KEY (`IdTrabajador`) REFERENCES `tbltrabajadores` (`IdTrabajador`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- Volcando datos para la tabla gestempresarial.tblsueldos: ~0 rows (aproximadamente)
-DELETE FROM `tblsueldos`;
-
--- Volcando estructura para tabla gestempresarial.tbltienetrabajos
-CREATE TABLE IF NOT EXISTS `tbltienetrabajos` (
-  `id_trabajo` int NOT NULL,
-  `id_tarea` int NOT NULL,
-  `importe_ud` int DEFAULT NULL,
-  KEY `FK_tblTTcod_trab` (`id_trabajo`),
-  KEY `FK_tblTTcod_tarea` (`id_tarea`),
-  CONSTRAINT `FK_tblTTcod_tarea` FOREIGN KEY (`id_tarea`) REFERENCES `tblposiblestrabajos` (`id_tarea`) ON UPDATE CASCADE,
-  CONSTRAINT `FK_tblTTcod_trab` FOREIGN KEY (`id_trabajo`) REFERENCES `tbltrabajosrealizados` (`cod_trabajo`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- Volcando datos para la tabla gestempresarial.tbltienetrabajos: ~0 rows (aproximadamente)
-DELETE FROM `tbltienetrabajos`;
-
--- Volcando estructura para tabla gestempresarial.tbltrabajadores
-CREATE TABLE IF NOT EXISTS `tbltrabajadores` (
-  `IdTrabajador` int NOT NULL AUTO_INCREMENT,
-  `NIFtrab` char(15) NOT NULL,
-  `IdRol` int NOT NULL,
-  `id_Empresa` int NOT NULL,
-  `Fecha` date NOT NULL,
-  `usuario` char(30) DEFAULT NULL,
-  `contrasenya` char(10) DEFAULT NULL,
-  `nombretrab` char(20) NOT NULL,
-  `apellidostrab` char(30) NOT NULL,
-  `direcciontrab` char(50) NOT NULL,
-  `Telefonotrab` bigint NOT NULL,
-  `e_mailtrab` char(50) DEFAULT NULL,
-  `Fecha_inicio` date NOT NULL,
-  `fecha_fin` date DEFAULT NULL,
-  `activotrab` bit(1) DEFAULT NULL,
-  PRIMARY KEY (`IdTrabajador`),
-  UNIQUE KEY `NIFtrab` (`NIFtrab`),
-  KEY `FK_tblTrabajadores_CIFEMPRESA` (`id_Empresa`),
-  KEY `FK_tblTrabajadores_IDROL` (`IdRol`),
-  CONSTRAINT `FK_tblTrabajadores_CIFEMPRESA` FOREIGN KEY (`id_Empresa`) REFERENCES `tbldatos_empresa` (`IdEmpresa`) ON UPDATE CASCADE,
-  CONSTRAINT `FK_tblTrabajadores_IDROL` FOREIGN KEY (`IdRol`) REFERENCES `tblroles` (`IdRol`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- Volcando datos para la tabla gestempresarial.tbltrabajadores: ~0 rows (aproximadamente)
-DELETE FROM `tbltrabajadores`;
-
--- Volcando estructura para tabla gestempresarial.tbltrabajosejecutados
-CREATE TABLE IF NOT EXISTS `tbltrabajosejecutados` (
-  `codigo_trabajo` int NOT NULL,
-  `trabajador` int NOT NULL,
-  KEY `FK_tblTrabEj_cod_trabajo` (`codigo_trabajo`),
-  KEY `FK_tblTrabEj_trabajador` (`trabajador`),
-  CONSTRAINT `FK_tblTrabEj_cod_trabajo` FOREIGN KEY (`codigo_trabajo`) REFERENCES `tbltrabajosrealizados` (`cod_trabajo`) ON UPDATE CASCADE,
-  CONSTRAINT `FK_tblTrabEj_trabajador` FOREIGN KEY (`trabajador`) REFERENCES `tbltrabajadores` (`IdTrabajador`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- Volcando datos para la tabla gestempresarial.tbltrabajosejecutados: ~0 rows (aproximadamente)
-DELETE FROM `tbltrabajosejecutados`;
-
--- Volcando estructura para tabla gestempresarial.tbltrabajosrealizados
-CREATE TABLE IF NOT EXISTS `tbltrabajosrealizados` (
-  `cod_trabajo` int NOT NULL AUTO_INCREMENT,
-  `fecha_inicio` timestamp(6) NOT NULL,
-  `descripcion` text,
-  `n_factura` int NOT NULL,
-  `IdTrabajador` int NOT NULL,
-  `fecha_fin` timestamp(6) NULL DEFAULT NULL,
-  PRIMARY KEY (`cod_trabajo`),
-  UNIQUE KEY `n_factura` (`n_factura`),
-  UNIQUE KEY `IdTrabajador` (`IdTrabajador`),
-  CONSTRAINT `FK_TTR_factura` FOREIGN KEY (`n_factura`) REFERENCES `tblfacturas` (`n_factura`) ON UPDATE CASCADE,
-  CONSTRAINT `FK_TTR_NIFtrabajador` FOREIGN KEY (`IdTrabajador`) REFERENCES `tbltrabajadores` (`IdTrabajador`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- Volcando datos para la tabla gestempresarial.tbltrabajosrealizados: ~0 rows (aproximadamente)
-DELETE FROM `tbltrabajosrealizados`;
-
-/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
+  CREATE TABLE IF NOT EXISTS tblStockMateriales (
+  IdStock int NOT NULL AUTO_INCREMENT primary key,
+  IdMaterial INT NOT NULL DEFAULT '0',
+  CantidadReal int NOT NULL DEFAULT '0',
+  CantidadPteRecibir  int NOT NULL DEFAULT '0',
+  CantidadTotal int NOT NULL DEFAULT '0',  
+  CONSTRAINT FK_tblstockproductos_tblproductos FOREIGN KEY (IdMaterial) REFERENCES tblMateriales (IdMaterial));
