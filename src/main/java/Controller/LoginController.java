@@ -52,7 +52,9 @@ public class LoginController implements Serializable {
         try{
             trab = trabajadorEJB.iniciarSesion(trabajador);
             if(trab!=null){
-                redireccion ="/protegido/principal";
+                //Almacenar en la sesion de JSF
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("trabajador", trab);
+                redireccion ="/protegido/principal?faces-redirect = true";
             } else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "aviso", "Credenciales incorrectas"));
             }
