@@ -295,6 +295,3 @@ activotrab bit,*/
         }
         return true;
     }
-    
-}
-

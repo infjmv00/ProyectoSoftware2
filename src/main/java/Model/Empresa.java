@@ -39,22 +39,6 @@ public class Empresa implements Serializable {
     @Column(name="activaEmpresa")
     private boolean activaEmpresa;
 
-
-    
-
-   
-
-    /*
-    create table  tblDatos_Empresa(
-    IdEmpresa int NOT NULL AUTO_INCREMENT primary key,
-    CIF_Empresa CHAR(20) NOT NULL,
-    nombre_empresa char(50) NOT NULL,
-    direccion_empresa char(50) NOT NULL,
-    Telefono_empresa bigint NOT NULL,
-    e_mail char(50),
-    activaempresa bit);
-     */
-
     public int getIdEmpresa() {
         return IdEmpresa;
     }
@@ -160,8 +144,5 @@ public class Empresa implements Serializable {
         return true;
     }
 
-   
-   
-   
     
 }
