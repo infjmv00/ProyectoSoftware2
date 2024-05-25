@@ -122,9 +122,9 @@
             <p:autoUpdate  />
        </p:messages>
       <label for="username">Usuario:</label>
-      <p:inputText id="username" value ="#{indexController.trabajador.usuario}" required="true" />
+      <p:inputText id="username" value ="#{indexController.trabajador.usuario}" requiredMessage="El usuario es obligatoria." required="true" />
       <label for="password">Contraseña:</label>
-      <p:password id="password" value ="#{indexController.trabajador.contrasenya}" required="true" feedback="true" />
+      <p:password id="password" value ="#{indexController.trabajador.contrasenya}" requiredMessage="La contraseña es obligatoria." required="true" feedback="true" />
       <div class="login-panel-footer">
           <p:commandButton value="Iniciar sesión" action="#{indexController.iniciarSesion}"  styleClass="login-button login-button-primary" />
         <p:commandButton value="Registrarse" action="#{loginBean.redirectToSignUp}" styleClass="login-button login-button-secondary" />
