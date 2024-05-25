@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -43,13 +44,15 @@ public class IndexController implements Serializable {
         this.trabajador = trabajador;
     }
     
-    public String IniciarSesion(){
+    public String iniciarSesion(){
         Trabajador trab;
         String redireccion = null;
        
         try{
               trab = trabajadorEJB.iniciarSesion(trabajador);
               if(trab!=null){
+                  //Almaceenar sesion en JSF
+                  FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("trabajador", trab);
                   redireccion ="/protegido/principal?faces-redirect=true";
               } else {
                   FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Aviso ", "Credenciales incorrectas"));
