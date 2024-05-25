@@ -38,7 +38,7 @@ public class TrabajadorFacade extends AbstractFacade<Trabajador> implements Trab
         String consulta;
         
         try{
-            consulta = "SELECT t FROM Trabajador t t.usuario =?1 and t.contrasenya=?2";
+            consulta = "FROM Trabajador t WHERE  t.usuario =?1 and t.contrasenya=?2";
             Query query = em.createQuery(consulta);
             query.setParameter(1, trab.getUsuario());
             query.setParameter(2, trab.getContrasenya());
