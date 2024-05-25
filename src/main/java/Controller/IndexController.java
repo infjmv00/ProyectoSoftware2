@@ -10,6 +10,8 @@ import Model.Trabajador;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -42,17 +44,21 @@ public class IndexController implements Serializable {
     }
     
     public String IniciarSesion(){
-        
+        Trabajador trab;
         String redireccion = null;
-        
-        
-        
+       
         try{
-              trabajadorEJB.iniciarSesion(trabajador);
-              redireccion ="/protegido/principal";
+              trab = trabajadorEJB.iniciarSesion(trabajador);
+              if(trab!=null){
+                  redireccion ="/protegido/principal?faces-redirect=true";
+              } else {
+                  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Aviso ", "Credenciales incorrectas"));
+              }
+              
             
         }catch(Exception e){
             // mensaje de JSF
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"Aviso ", "Error!! "));
         }
         
          return redireccion;
