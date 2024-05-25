@@ -118,8 +118,8 @@
   <div class="login-panel">
     <h2 class="login-panel-header">Login</h2>
     <h:form>
-       <p:messages>
-            <p:autoUpdate />
+        <p:messages  showDetail="true">
+            <p:autoUpdate  />
        </p:messages>
       <label for="username">Usuario:</label>
       <p:inputText id="username" value ="#{indexController.trabajador.usuario}" required="true" />
