@@ -117,17 +117,17 @@
 <h:body>
   <div class="login-panel">
     <h2 class="login-panel-header">Login</h2>
-    <h:form>
+    <h:form id="registerForm">
         <p:messages  showDetail="true">
             <p:autoUpdate  />
        </p:messages>
       <label for="username">Usuario:</label>
-      <p:inputText id="username" value ="#{indexController.trabajador.usuario}" requiredMessage="El usuario es obligatoria." required="true" />
+      <p:inputText id="username" value ="#{indexController.trabajador.usuario}" requiredMessage="El usuario es obligatoria." required="false" />
       <label for="password">Contraseña:</label>
-      <p:password id="password" value ="#{indexController.trabajador.contrasenya}" requiredMessage="La contraseña es obligatoria." required="true" feedback="true" />
+      <p:password id="password" value ="#{indexController.trabajador.contrasenya}" requiredMessage="La contraseña es obligatoria." required="false" feedback="true" />
       <div class="login-panel-footer">
           <p:commandButton value="Iniciar sesión" action="#{indexController.iniciarSesion}"  styleClass="login-button login-button-primary" />
-          <p:commandButton value="Registrarse" action="#{indexController.registrarTrabajador()}" styleClass="login-button login-button-secondary" />
+         <p:commandButton value="Registrar" action="#{indexController.registrarTrabajador}" update="registerForm" />
       </div>
     </h:form>
   </div>
