@@ -127,7 +127,7 @@
       <p:password id="password" value ="#{indexController.trabajador.contrasenya}" requiredMessage="La contraseña es obligatoria." required="true" feedback="true" />
       <div class="login-panel-footer">
           <p:commandButton value="Iniciar sesión" action="#{indexController.iniciarSesion}"  styleClass="login-button login-button-primary" />
-        <p:commandButton value="Registrarse" action="#{loginBean.redirectToSignUp}" styleClass="login-button login-button-secondary" />
+          <p:commandButton value="Registrarse" action="#{indexController.redirectToSignUp()}" styleClass="login-button login-button-secondary" update="registerForm" />
       </div>
     </h:form>
   </div>
