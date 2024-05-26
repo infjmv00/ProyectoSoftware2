@@ -8,7 +8,8 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
                
         <title>Facelets Template</title>
         <f:event type="preRenderView" listener="#{plantillaController.verificarSesion()}"/>
@@ -19,18 +20,10 @@
         <div id="top">
             <ui:insert name="top">
                 <h:form>
-                    
-                    <p:menubar>
-                        
-                        <p:menuitem value="option 1"/>
-                        <p:menuitem value="option 2"/>
-                        <p:menuitem value="option 3"/>
-                        
-                    </p:menubar>
-                    
+                <p:menubar model="#{menuController.model}"/>
+                <p:commandButton actionListener="#{menuController.cerrarSesion()}" value="cerrar sesion" action="./../index?faces-redirect=true"/>
                 </h:form>
-                
-                
+
             </ui:insert>
         </div>
 
