@@ -39,6 +39,13 @@ public class Menu implements Serializable{
     @JoinColumn(name="codigo_submenu", nullable=false)
     private Menu Codigo_submenu;
     
+    @ManyToOne
+    @JoinColumn(name="idRol", nullable=false)
+    private Rol rol;
+    
+    @Column(name="url")
+    private String url;
+    
     @Column(name="estado")
     private boolean activo;
 
@@ -82,14 +89,32 @@ public class Menu implements Serializable{
         this.activo = activo;
     }
 
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 37 * hash + this.idMenu;
-        hash = 37 * hash + Objects.hashCode(this.nombre);
-        hash = 37 * hash + Objects.hashCode(this.tipo);
-        hash = 37 * hash + Objects.hashCode(this.Codigo_submenu);
-        hash = 37 * hash + (this.activo ? 1 : 0);
+        int hash = 3;
+        hash = 97 * hash + this.idMenu;
+        hash = 97 * hash + Objects.hashCode(this.nombre);
+        hash = 97 * hash + Objects.hashCode(this.tipo);
+        hash = 97 * hash + Objects.hashCode(this.Codigo_submenu);
+        hash = 97 * hash + Objects.hashCode(this.rol);
+        hash = 97 * hash + Objects.hashCode(this.url);
+        hash = 97 * hash + (this.activo ? 1 : 0);
         return hash;
     }
 
@@ -117,12 +142,20 @@ public class Menu implements Serializable{
         if (!Objects.equals(this.tipo, other.tipo)) {
             return false;
         }
+        if (!Objects.equals(this.url, other.url)) {
+            return false;
+        }
         if (!Objects.equals(this.Codigo_submenu, other.Codigo_submenu)) {
+            return false;
+        }
+        if (!Objects.equals(this.rol, other.rol)) {
             return false;
         }
         return true;
     }
+
     
+
     
     
 }
