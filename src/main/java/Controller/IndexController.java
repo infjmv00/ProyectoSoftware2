@@ -1,9 +1,3 @@
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller;
 
 import EJB.TrabajadorFacadeLocal;
@@ -12,14 +6,11 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
-/**
- *
- * @author Jose Maria
- */
 @Named
 @ViewScoped
 public class IndexController implements Serializable {
@@ -28,11 +19,9 @@ public class IndexController implements Serializable {
     private TrabajadorFacadeLocal trabajadorEJB;
     
     private Trabajador trabajador;
-    
 
     @PostConstruct
-    public void init(){
-        
+    public void init() {
         trabajador = new Trabajador();
     }
 
@@ -44,27 +33,40 @@ public class IndexController implements Serializable {
         this.trabajador = trabajador;
     }
     
-    public String iniciarSesion(){
+    public String iniciarSesion() {
         Trabajador trab;
         String redireccion = null;
        
-        try{
-              trab = trabajadorEJB.iniciarSesion(trabajador);
-              if(trab!=null){
-                  //Almaceenar sesion en JSF
-                  FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("trabajador", trab);
-                  redireccion ="/protegido/principal?faces-redirect=true";
-              } else {
-                  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Aviso ", "Credenciales incorrectas"));
-              }
-              
-            
-        }catch(Exception e){
-            // mensaje de JSF
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"Aviso ", "Error!! "));
+        try {
+            trab = trabajadorEJB.iniciarSesion(trabajador);
+            if (trab != null) {
+                // Almacenar sesión en JSF
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("trabajador", trab);
+                redireccion = "/protegido/principal?faces-redirect=true";
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso ", "Credenciales incorrectas"));
+            }
+        } catch (Exception e) {
+            // Mensaje de JSF
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso ", "Error!! "));
         }
         
-         return redireccion;
+        return redireccion;
     }
     
+   public void registrarTrabajador() {
+    
+       System.out.println("entras en registrar usuario");
+    FacesContext context = FacesContext.getCurrentInstance();
+    ExternalContext externalContext = context.getExternalContext();
+    String contextPath = externalContext.getRequestContextPath();
+    String redirectURL = contextPath + "/faces/AltaTrabajador.xhtml";
+    
+    try {
+        externalContext.redirect(redirectURL);
+    } catch (Exception e) {
+        e.printStackTrace();
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error de redirección", "No se pudo redirigir a la página de registro."));
+    }
+}
 }
