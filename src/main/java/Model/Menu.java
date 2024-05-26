@@ -39,7 +39,7 @@ public class Menu implements Serializable{
     @JoinColumn(name="codigo_submenu", nullable=false)
     private Menu Codigo_submenu;
     
-    @Column(name="activo")
+    @Column(name="estado")
     private boolean activo;
 
     public int getIdMenu() {
