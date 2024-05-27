@@ -88,10 +88,11 @@ public class AltaTrabajadorController implements Serializable {
           System.out.println("aparentemente insertas");
             //trabajador.setRol(rol);
             trabajadorEJB.create(trabajador);
+            System.out.println(trabajador.getIdTrabajador());
             System.out.println(trabajador.getNombre_trabajador()+ " insertado correctamente");
         } catch(Exception e){
             
-            System.out.println("Error al insertar trabajador en la base de datos "+ e.getMessage());
+            System.out.println("Error al insertar trabajador en la base de datos "+ e.getMessage() );
         }
     }
 

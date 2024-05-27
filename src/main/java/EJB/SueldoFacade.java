@@ -24,6 +24,17 @@ public class SueldoFacade extends AbstractFacade<Sueldo> implements SueldoFacade
     protected EntityManager getEntityManager() {
         return em;
     }
+    
+    @Override
+    public float calcularNomina(Sueldo sueldo){
+        
+        float bruto= sueldo.getEnbruto();
+        float gastosIrpf = sueldo.getGastosirpf();
+        float seguridadsocial = sueldo.getSeguridad_Social();
+        float primas = sueldo.getPrimas();
+        float neto = bruto - (bruto*gastosIrpf)-(bruto*seguridadsocial)+primas;
+        return neto;
+    }
 
     public SueldoFacade() {
         super(Sueldo.class);

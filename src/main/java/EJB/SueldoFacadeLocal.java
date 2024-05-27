@@ -30,4 +30,5 @@ public interface SueldoFacadeLocal {
 
     int count();
     
+   float calcularNomina(Sueldo sueldo);
 }

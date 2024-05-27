@@ -73,15 +73,15 @@ public class TablaEditarTrabajadorController implements Serializable {
     }
     
     
-    public void actualizar(RowEditEvent<Trabajador> event){
-        
-        
-        
-    }
+   
     public void eliminar(Trabajador trabajador){
         FacesMessage msg = new FacesMessage("Trabajador Eliminado", String.valueOf(trabajador.getIdTrabajador()));
         FacesContext.getCurrentInstance().addMessage(null, msg);
         trabajador.setTrabajadoractivo(false);
+        trabajadorEJB.edit(trabajador);
+        // Volver a cargar la lista de trabajadores
+        //listaTrabajadores = trabajadorEJB.findAll();
+        System.out.println("Valor de trabajador activo: "+trabajador.isTrabajadoractivo());
        // trabajadorEJB.remove(trabajador);
        
     }
