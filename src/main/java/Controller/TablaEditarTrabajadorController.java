@@ -38,7 +38,7 @@ public class TablaEditarTrabajadorController implements Serializable {
     @PostConstruct
     
     public void init(){
-        ´
+        
         listaTrabajadores = trabajadorEJB.findAll();
     }
 
