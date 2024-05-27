@@ -73,7 +73,11 @@ public class TablaEditarTrabajadorController implements Serializable {
         trabajador = event.getObject();
         trabajadorEJB.edit(trabajador);
     }
-    
+    public void onRowCancel(RowEditEvent<Trabajador> event) {
+        FacesMessage msg = new FacesMessage("Edicion Cancelada con Id", String.valueOf(event.getObject().getIdTrabajador()));
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+
     
     
 }
