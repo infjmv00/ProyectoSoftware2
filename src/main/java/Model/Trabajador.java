@@ -191,13 +191,7 @@ activotrab bit,*/
         this.fecha_fin = fecha_fin;
     }
 
-    public boolean isTrabajadoractivo() {
-        return trabajadoractivo;
-    }
-
-    public void setTrabajadoractivo(boolean trabajadoractivo) {
-        this.trabajadoractivo = trabajadoractivo;
-    }
+   
 
     public Empresa getEmpresa() {
         return empresa;
@@ -215,24 +209,32 @@ activotrab bit,*/
         this.rol = rol;
     }
 
+    public boolean isTrabajadoractivo() {
+        return trabajadoractivo;
+    }
+
+    public void setTrabajadoractivo(boolean trabajadoractivo) {
+        this.trabajadoractivo = trabajadoractivo;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 97 * hash + this.idTrabajador;
-        hash = 97 * hash + Objects.hashCode(this.nifTrabajador);
-        hash = 97 * hash + Objects.hashCode(this.fecha_nacimiento);
-        hash = 97 * hash + Objects.hashCode(this.usuario);
-        hash = 97 * hash + Objects.hashCode(this.contrasenya);
-        hash = 97 * hash + Objects.hashCode(this.nombre_trabajador);
-        hash = 97 * hash + Objects.hashCode(this.apellidos_trabajador);
-        hash = 97 * hash + (int) (this.telefono_trabajador ^ (this.telefono_trabajador >>> 32));
-        hash = 97 * hash + Objects.hashCode(this.direccion_trabajador);
-        hash = 97 * hash + Objects.hashCode(this.e_mailtrabajador);
-        hash = 97 * hash + Objects.hashCode(this.fecha_inicio);
-        hash = 97 * hash + Objects.hashCode(this.fecha_fin);
-        hash = 97 * hash + (this.trabajadoractivo ? 1 : 0);
-        hash = 97 * hash + Objects.hashCode(this.empresa);
-        hash = 97 * hash + Objects.hashCode(this.rol);
+        int hash = 7;
+        hash = 37 * hash + this.idTrabajador;
+        hash = 37 * hash + Objects.hashCode(this.nifTrabajador);
+        hash = 37 * hash + Objects.hashCode(this.fecha_nacimiento);
+        hash = 37 * hash + Objects.hashCode(this.usuario);
+        hash = 37 * hash + Objects.hashCode(this.contrasenya);
+        hash = 37 * hash + Objects.hashCode(this.nombre_trabajador);
+        hash = 37 * hash + Objects.hashCode(this.apellidos_trabajador);
+        hash = 37 * hash + (int) (this.telefono_trabajador ^ (this.telefono_trabajador >>> 32));
+        hash = 37 * hash + Objects.hashCode(this.direccion_trabajador);
+        hash = 37 * hash + Objects.hashCode(this.e_mailtrabajador);
+        hash = 37 * hash + Objects.hashCode(this.fecha_inicio);
+        hash = 37 * hash + Objects.hashCode(this.fecha_fin);
+        hash = 37 * hash + (this.trabajadoractivo ? 1 : 0);
+        hash = 37 * hash + Objects.hashCode(this.empresa);
+        hash = 37 * hash + Objects.hashCode(this.rol);
         return hash;
     }
 
@@ -295,6 +297,10 @@ activotrab bit,*/
         }
         return true;
     }
+
+    
+
+    
     
 }
 
