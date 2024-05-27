@@ -29,8 +29,9 @@ public class Sueldo implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idSueldo;
     
-    @JoinColumn(name="idTrabajador",nullable= false)
+    @JoinColumn(name="IdTrabajador")
      @ManyToOne
     private Trabajador trabajador;
     
@@ -51,6 +52,14 @@ public class Sueldo implements Serializable {
     
     @Column(name="total")
     private float total;
+
+    public int getIdSueldo() {
+        return idSueldo;
+    }
+
+    public void setIdSueldo(int idSueldo) {
+        this.idSueldo = idSueldo;
+    }
 
     public Trabajador getTrabajador() {
         return trabajador;
@@ -110,14 +119,15 @@ public class Sueldo implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 83 * hash + Objects.hashCode(this.trabajador);
-        hash = 83 * hash + Objects.hashCode(this.fecha);
-        hash = 83 * hash + Float.floatToIntBits(this.enbruto);
-        hash = 83 * hash + Float.floatToIntBits(this.gastosirpf);
-        hash = 83 * hash + Float.floatToIntBits(this.seguridad_Social);
-        hash = 83 * hash + Float.floatToIntBits(this.primas);
-        hash = 83 * hash + Float.floatToIntBits(this.total);
+        int hash = 5;
+        hash = 37 * hash + this.idSueldo;
+        hash = 37 * hash + Objects.hashCode(this.trabajador);
+        hash = 37 * hash + Objects.hashCode(this.fecha);
+        hash = 37 * hash + Float.floatToIntBits(this.enbruto);
+        hash = 37 * hash + Float.floatToIntBits(this.gastosirpf);
+        hash = 37 * hash + Float.floatToIntBits(this.seguridad_Social);
+        hash = 37 * hash + Float.floatToIntBits(this.primas);
+        hash = 37 * hash + Float.floatToIntBits(this.total);
         return hash;
     }
 
@@ -133,6 +143,9 @@ public class Sueldo implements Serializable {
             return false;
         }
         final Sueldo other = (Sueldo) obj;
+        if (this.idSueldo != other.idSueldo) {
+            return false;
+        }
         if (Float.floatToIntBits(this.enbruto) != Float.floatToIntBits(other.enbruto)) {
             return false;
         }
@@ -156,6 +169,8 @@ public class Sueldo implements Serializable {
         }
         return true;
     }
+
+    
     
     
             

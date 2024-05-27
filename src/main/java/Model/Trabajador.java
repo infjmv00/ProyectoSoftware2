@@ -30,7 +30,7 @@ public class Trabajador implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idTrabajador;
+    private int IdTrabajador;
     
     @Column(name="NIFtrab")
     private String nifTrabajador;
@@ -96,11 +96,11 @@ fecha_fin date,
 activotrab bit,*/
 
     public int getIdTrabajador() {
-        return idTrabajador;
+        return IdTrabajador;
     }
 
-    public void setIdTrabajador(int idTrabajador) {
-        this.idTrabajador = idTrabajador;
+    public void setIdTrabajador(int IdTrabajador) {
+        this.IdTrabajador = IdTrabajador;
     }
 
     public String getNifTrabajador() {
@@ -191,7 +191,13 @@ activotrab bit,*/
         this.fecha_fin = fecha_fin;
     }
 
-   
+    public boolean isTrabajadoractivo() {
+        return trabajadoractivo;
+    }
+
+    public void setTrabajadoractivo(boolean trabajadoractivo) {
+        this.trabajadoractivo = trabajadoractivo;
+    }
 
     public Empresa getEmpresa() {
         return empresa;
@@ -209,32 +215,24 @@ activotrab bit,*/
         this.rol = rol;
     }
 
-    public boolean isTrabajadoractivo() {
-        return trabajadoractivo;
-    }
-
-    public void setTrabajadoractivo(boolean trabajadoractivo) {
-        this.trabajadoractivo = trabajadoractivo;
-    }
-
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 37 * hash + this.idTrabajador;
-        hash = 37 * hash + Objects.hashCode(this.nifTrabajador);
-        hash = 37 * hash + Objects.hashCode(this.fecha_nacimiento);
-        hash = 37 * hash + Objects.hashCode(this.usuario);
-        hash = 37 * hash + Objects.hashCode(this.contrasenya);
-        hash = 37 * hash + Objects.hashCode(this.nombre_trabajador);
-        hash = 37 * hash + Objects.hashCode(this.apellidos_trabajador);
-        hash = 37 * hash + (int) (this.telefono_trabajador ^ (this.telefono_trabajador >>> 32));
-        hash = 37 * hash + Objects.hashCode(this.direccion_trabajador);
-        hash = 37 * hash + Objects.hashCode(this.e_mailtrabajador);
-        hash = 37 * hash + Objects.hashCode(this.fecha_inicio);
-        hash = 37 * hash + Objects.hashCode(this.fecha_fin);
-        hash = 37 * hash + (this.trabajadoractivo ? 1 : 0);
-        hash = 37 * hash + Objects.hashCode(this.empresa);
-        hash = 37 * hash + Objects.hashCode(this.rol);
+        int hash = 3;
+        hash = 83 * hash + this.IdTrabajador;
+        hash = 83 * hash + Objects.hashCode(this.nifTrabajador);
+        hash = 83 * hash + Objects.hashCode(this.fecha_nacimiento);
+        hash = 83 * hash + Objects.hashCode(this.usuario);
+        hash = 83 * hash + Objects.hashCode(this.contrasenya);
+        hash = 83 * hash + Objects.hashCode(this.nombre_trabajador);
+        hash = 83 * hash + Objects.hashCode(this.apellidos_trabajador);
+        hash = 83 * hash + (int) (this.telefono_trabajador ^ (this.telefono_trabajador >>> 32));
+        hash = 83 * hash + Objects.hashCode(this.direccion_trabajador);
+        hash = 83 * hash + Objects.hashCode(this.e_mailtrabajador);
+        hash = 83 * hash + Objects.hashCode(this.fecha_inicio);
+        hash = 83 * hash + Objects.hashCode(this.fecha_fin);
+        hash = 83 * hash + (this.trabajadoractivo ? 1 : 0);
+        hash = 83 * hash + Objects.hashCode(this.empresa);
+        hash = 83 * hash + Objects.hashCode(this.rol);
         return hash;
     }
 
@@ -250,7 +248,7 @@ activotrab bit,*/
             return false;
         }
         final Trabajador other = (Trabajador) obj;
-        if (this.idTrabajador != other.idTrabajador) {
+        if (this.IdTrabajador != other.IdTrabajador) {
             return false;
         }
         if (this.telefono_trabajador != other.telefono_trabajador) {
@@ -298,6 +296,7 @@ activotrab bit,*/
         return true;
     }
 
+    
     
 
     
