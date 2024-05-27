@@ -7,6 +7,7 @@ package Controller;
 
 import EJB.TrabajadorFacadeLocal;
 import Model.Trabajador;
+import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
