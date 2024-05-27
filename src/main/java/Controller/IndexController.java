@@ -39,7 +39,9 @@ public class IndexController implements Serializable {
        
         try {
             trab = trabajadorEJB.iniciarSesion(trabajador);
-            if (trab != null) {
+            if(trab.isTrabajadoractivo() == false){
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Aviso ", "No tienes permisos de acceso a la aplicacion"));
+            } else if (trab != null) {
                 // Almacenar sesión en JSF
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("trabajador", trab);
                 redireccion = "/protegido/principal?faces-redirect=true";
