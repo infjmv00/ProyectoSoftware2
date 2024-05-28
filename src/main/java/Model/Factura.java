@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -34,6 +35,10 @@ public class Factura implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_Cliente", nullable = false)
     private Cliente cliente;
+    
+    @OneToOne
+    @JoinColumn(name = "id_material", nullable = false)
+    private Material material;
 
     @Column(name = "descripcion")
     private String descripcion;
@@ -46,7 +51,17 @@ public class Factura implements Serializable {
 
 
     @Column(name = "iva_aplicado")
-    private int iva_aplicado;
+    private float iva_aplicado;
+    
+    @Column(name = "precio_unitario")
+    private float precio_unitario;
+
+    
+    @Column(name = "total")
+    private float total;
+    
+     @Column(name = "total_bruto")
+    private float total_bruto;
 
     public int getN_factura() {
         return n_factura;
@@ -62,6 +77,14 @@ public class Factura implements Serializable {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public Material getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(Material material) {
+        this.material = material;
     }
 
     public String getDescripcion() {
@@ -88,23 +111,51 @@ public class Factura implements Serializable {
         this.tipo = tipo;
     }
 
-    public int getIva_aplicado() {
+    public float getIva_aplicado() {
         return iva_aplicado;
     }
 
-    public void setIva_aplicado(int iva_aplicado) {
+    public void setIva_aplicado(float iva_aplicado) {
         this.iva_aplicado = iva_aplicado;
+    }
+
+    public float getPrecio_unitario() {
+        return precio_unitario;
+    }
+
+    public void setPrecio_unitario(float precio_unitario) {
+        this.precio_unitario = precio_unitario;
+    }
+
+    public float getTotal() {
+        return total;
+    }
+
+    public void setTotal(float total) {
+        this.total = total;
+    }
+
+    public float getTotal_bruto() {
+        return total_bruto;
+    }
+
+    public void setTotal_bruto(float total_bruto) {
+        this.total_bruto = total_bruto;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 97 * hash + this.n_factura;
-        hash = 97 * hash + Objects.hashCode(this.cliente);
-        hash = 97 * hash + Objects.hashCode(this.descripcion);
-        hash = 97 * hash + this.cantidad;
-        hash = 97 * hash + Objects.hashCode(this.tipo);
-        hash = 97 * hash + this.iva_aplicado;
+        int hash = 3;
+        hash = 17 * hash + this.n_factura;
+        hash = 17 * hash + Objects.hashCode(this.cliente);
+        hash = 17 * hash + Objects.hashCode(this.material);
+        hash = 17 * hash + Objects.hashCode(this.descripcion);
+        hash = 17 * hash + this.cantidad;
+        hash = 17 * hash + Objects.hashCode(this.tipo);
+        hash = 17 * hash + Float.floatToIntBits(this.iva_aplicado);
+        hash = 17 * hash + Float.floatToIntBits(this.precio_unitario);
+        hash = 17 * hash + Float.floatToIntBits(this.total);
+        hash = 17 * hash + Float.floatToIntBits(this.total_bruto);
         return hash;
     }
 
@@ -126,7 +177,16 @@ public class Factura implements Serializable {
         if (this.cantidad != other.cantidad) {
             return false;
         }
-        if (this.iva_aplicado != other.iva_aplicado) {
+        if (Float.floatToIntBits(this.iva_aplicado) != Float.floatToIntBits(other.iva_aplicado)) {
+            return false;
+        }
+        if (Float.floatToIntBits(this.precio_unitario) != Float.floatToIntBits(other.precio_unitario)) {
+            return false;
+        }
+        if (Float.floatToIntBits(this.total) != Float.floatToIntBits(other.total)) {
+            return false;
+        }
+        if (Float.floatToIntBits(this.total_bruto) != Float.floatToIntBits(other.total_bruto)) {
             return false;
         }
         if (!Objects.equals(this.descripcion, other.descripcion)) {
@@ -138,10 +198,17 @@ public class Factura implements Serializable {
         if (!Objects.equals(this.cliente, other.cliente)) {
             return false;
         }
+        if (!Objects.equals(this.material, other.material)) {
+            return false;
+        }
         return true;
     }
+
     
     
 
+    
+
+    
 
 }

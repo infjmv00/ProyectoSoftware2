@@ -33,6 +33,7 @@ public class Material implements Serializable {
     
     @Column(name = "descripcion")
     private String descripcion;
+    
 
     @OneToOne
     @JoinColumn(name = "idFamilia", nullable = false)
@@ -84,11 +85,11 @@ public class Material implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 29 * hash + this.idMaterial;
-        hash = 29 * hash + Objects.hashCode(this.codigo_material);
-        hash = 29 * hash + Objects.hashCode(this.descripcion);
-        hash = 29 * hash + Objects.hashCode(this.familia);
-        hash = 29 * hash + (this.activo ? 1 : 0);
+        hash = 17 * hash + this.idMaterial;
+        hash = 17 * hash + Objects.hashCode(this.codigo_material);
+        hash = 17 * hash + Objects.hashCode(this.descripcion);
+        hash = 17 * hash + Objects.hashCode(this.familia);
+        hash = 17 * hash + (this.activo ? 1 : 0);
         return hash;
     }
 
@@ -121,6 +122,7 @@ public class Material implements Serializable {
         }
         return true;
     }
+
     
     
 
