@@ -28,5 +28,22 @@ public class PresupuestoFacade extends AbstractFacade<Presupuesto> implements Pr
     public PresupuestoFacade() {
         super(Presupuesto.class);
     }
+    // total sin iva
+    @Override
+    public float calcularTotalBrutoPresupuesto(Presupuesto presupuesto){
+     
+        int unidades = presupuesto.getCantidad();
+        float precio_unitario = presupuesto.getPrecio_unitario();
+        float bruto_presupuesto = unidades*precio_unitario;
+        return bruto_presupuesto;
+    }
+    
+    //total con iva
+    @Override
+    public float calcularTotalPresupuesto(Presupuesto presupuesto){
+     
+        float total = (this.calcularTotalBrutoPresupuesto(presupuesto)*presupuesto.getIva_aplicado())+this.calcularTotalBrutoPresupuesto(presupuesto);
+        return total;
+    }
     
 }

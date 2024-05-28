@@ -30,4 +30,10 @@ public interface PresupuestoFacadeLocal {
 
     int count();
     
+    float calcularTotalBrutoPresupuesto(Presupuesto presupuesto);
+    
+    float calcularTotalPresupuesto(Presupuesto presupuesto);
+    
+    
+    
 }
