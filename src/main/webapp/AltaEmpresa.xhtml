@@ -6,9 +6,10 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
+        <h:outputStylesheet library="css" name="styles.css" />
     </h:head>
     <h:body>
-        <h:outputStylesheet library="css" name="styles.css" />
+        
         <h:form>
             <p:outputLabel class="headline_class" value ="introduzca CIF:  "/>
             <p:inputText value="#{altaEmpresaController.empresa.cif_empresa}" />

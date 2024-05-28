@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Detalles del proveedor</title>
+    <h:outputScript name="js/spanishCalendar.js" />
+</h:head>
+<h:body>
+    
+    <div class="card">
+        <h:form id="clienteForm">
+            <p:messages id="messages" showDetail="true" closable="true"/>
+            
+            <p:fieldset legend="Datos personales">
+                <p:panelGrid columns="2">
+                    <p:outputLabel for="nifProveedor" value="NIF:" />
+                    <p:inputText id="nifCliente" value="#{altaClienteController.cliente.CIFNIFcli}" required="true" />
+                    
+                    
+                    
+                    <p:outputLabel for="nombreProveedor" value="Nombre:" />
+                    <p:inputText id="nombreProveedor" value="#{altaProveedorController.proveedor.nombreprov}" required="true"/>
+                    
+                    <p:outputLabel for="apellidosProveedor" value="Apellidos:" />
+                    <p:inputText id="apellidosProveedor" value="#{altaProveedorController.proveedor.apellidosprov}" required="true"/>
+                    
+                    <p:outputLabel for="direccion" value="Dirección:" />
+                    <p:inputText id="direccionProveedor" value="#{altaProveedorController.proveedor.direccion}" required="true" />
+                    
+                    <p:outputLabel for="telefonoProveedor" value="Teléfono:" />
+                    <p:inputText id="telefonoProveedor" value="#{altaProveedorController.proveedor.telefonoprov}" required="true" />
+                    
+                    <p:outputLabel for="correoElectronicoProveedor" value="Correo electrónico:" />
+                    <p:inputText id="correoElectronicoProveedor" value="#{altaProveedorController.proveedor.e_mail}" required="true"/>
+                     
+                    <p:selectBooleanCheckbox value="#{altaProveedorController.proveedor.activoprov}" itemLabel="Activo"/>
+                    
+                </p:panelGrid>
+                <p:commandButton value="Insertar Cliente" actionListener="#{altaProveedorController.insertarProveedor()}" update="clienteForm"/>
+            </p:fieldset>
+            
+            
+        </h:form>
+    </div>
+</h:body>
+</html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Gestión de Presupuestos</title>
+        <h:outputScript name="js/spanishCalendar.js" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <div class="card">
+            <h:form id="presupuestoForm">
+                <p:messages id="messages" showDetail="true" closable="true"/>
+                <p:fieldset legend="Datos de la nomina">
+                    <p:panelGrid columns="2">
+                        <p:outputLabel for="cboCliente" value="Cliente"/>
+                        <p:selectOneMenu id="cboCliente" value="#{altaPresupuestoController.cliente.id_Cliente}" required="true">
+                            <f:selectItems value="#{altaPresupuestoController.listaClientes}" var="cli" itemLabel="#{cli.nombrecli}" itemValue="#{cli.id_Cliente}" />
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="descripcionpresupuesto" value="descripcion:" />
+                        <p:inputText id="descripcionpresupuesto" value="#{altaPresupuestoController.presupuesto.descripcion}" required="true" />
+
+                        <p:outputLabel for="tipoTrabajo" value="Tipo de trabajo:" />
+                        <p:inputText id="tipoTrabajo" value="#{altaPresupuestoController.presupuesto.tipo}" required="true"/>
+
+                        <p:outputLabel for="cboMaterial" value="Material"/>
+                        <p:selectOneMenu id="cboMaterial" value="#{altaPresupuestoController.material.idMaterial}" required="true">
+                            <f:selectItems value="#{altaPresupuestoController.listaMateriales}" var="mat" itemLabel="#{mat.codigo_material}" itemValue="#{mat.idMaterial}" />
+                        </p:selectOneMenu>
+                        
+                        <p:outputLabel for="unidadesMaterial" value="Unidades Material:" />
+                        <p:inputText id="unidadesMaterial" value="#{altaPresupuestoController.presupuesto.cantidad}" required="true"/>
+
+                        <p:outputLabel for="precioUnitario" value="precio unitario:" />
+                        <p:inputText id="precioUnitario" value="#{altaPresupuestoController.presupuesto.precio_unitario}" required="true"/>
+
+                        <p:outputLabel for="iva" value="Iva Aplicado:" />
+                        <p:inputText id="iva" value="#{altaPresupuestoController.presupuesto.iva_aplicado}" required="true" />
+
+                        <h:outputLabel for="total_sin_ivs" value="Total sin iva:" />
+                        <h:outputText id="total_sin_ivs" value="#{altaPresupuestoController.presupuesto.total_bruto}" />
+                        <h:outputLabel for="total_con_ivs" value="Total con iva:" />
+                        <h:outputText id="total_con_ivs" value="#{altaPresupuestoController.presupuesto.total}" />
+                    </p:panelGrid>
+                    <p:commandButton value="Calcular Presupuesto" actionListener="#{altaPresupuestoController.insertarPresupuesto()}" update="presupuestoForm" />
+                </p:fieldset>
+            </h:form>
+        </div>
+    </h:body>
+</html>

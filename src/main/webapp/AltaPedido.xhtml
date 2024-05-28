@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Detalles del Trabajador</title>
+    <h:outputScript name="js/spanishCalendar.js" />
+    
+</h:head>
+<h:body>
+    
+    <div class="card">
+        <h:form id="pedidoForm">
+            <p:messages id="messages" showDetail="true" closable="true"/>
+            
+            <p:fieldset legend="Datos del pedido">
+                
+                    
+                
+                <p:panelGrid columns="2">
+                    
+                    
+                    <p:outputLabel for="fechaPedido" value="Fecha de pedido:" />
+                    <p:calendar id="fechaPedido" value="#{altaPedidoController.pedido.fecha}" pattern="dd/MM/yyyy"/>
+                    
+                    <p:outputLabel for="unidadesPedido" value="Unidades:" />                    
+                    <p:inputText id="unidadesPedido" value="#{altaPedidoController.pedido.unidades}" required="true" />
+                    
+                    
+
+                    
+                    <p:selectBooleanCheckbox value="#{altaPedidoController.pedido.activo}" itemLabel="Activo"/>
+                    
+                   
+
+
+                    
+                    
+                    <p class="field col-12 md:col-4">
+                    <p:outputLabel for ="cboProveedor" value="Proveedor"/>
+                    <p:selectOneMenu id="cboProveedor" value="#{altaPedidoController.proveedor.idProveedor}">
+                        <f:selectItems value="#{altaPedidoController.listaProveedores}" var="pro" itemLabel="#{pro.nombreprov}" itemValue="#{pro.idProveedor}" />
+                    </p:selectOneMenu>
+
+
+                    </p>
+                    
+                   
+
+                                      
+                    <p:selectBooleanCheckbox value="#{altaPedidoController.pedido.finalizado}" itemLabel="Pedido finalizado"/>
+                </p:panelGrid>
+                <p:commandButton value="Insertar pedido" actionListener="#{altaPedidoController.insertarPedido()}" update="pedidoForm"/>
+            </p:fieldset>
+            
+          
+        </h:form>
+    </div>
+</h:body>
+</html>
