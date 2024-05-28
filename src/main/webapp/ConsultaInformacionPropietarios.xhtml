@@ -1,16 +1,75 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Tiendas</title>
+    <h:outputStylesheet name="style.css"/>
+</h:head>
+<h:body>
+    
+    <h1>Informcion de Propietarios</h1>
+
+    <h:form id="form">
+
+        <p:dataTable id="propTable" var="propTable" value="#{consultarTrabajadoresController.listaPropietarios}"
+                     paginator="true" rows="10" rowsPerPageTemplate="5,10,15" filteredValue="#{consultarTrabajadoresController.filteredPropietarios}"
+                     selectionMode="single" selection="#{consultarTrabajadoresController.selectedAdmin}" 
+                     rowKey="#{propTable.idTrabajador}" widgetVar="propTable" globalFilter="#{consultarTrabajadoresController.globalFilter}">
+
+          
+
+            <p:column headerText="ID" sortBy="#{propTable.idTrabajador}" filterBy="#{propTable.idTrabajador}" filterMatchMode="contains">
+                <f:facet name="filter">
+                    <p:inputText placeholder="Filtrar por ID" onkeyup="PF('propTable').filter()" />
+                </f:facet>
+                <h:outputText value="#{propTable.idTrabajador}"/>
+            </p:column>
+
+            <p:column headerText="NIF" sortBy="#{propTable.nifTrabajador}" filterBy="#{propTable.nifTrabajador}" filterMatchMode="contains">
+                <f:facet name="filter">
+                    <p:inputText placeholder="Filtrar por NIF" onkeyup="PF('propTable').filter()" />
+                </f:facet>
+                <h:outputText value="#{propTable.nifTrabajador}"/>
+            </p:column>
+
+            <p:column headerText="Nombre del propietario" sortBy="#{propTable.nombre_trabajador}" filterBy="#{propTable.nombre_trabajador}" filterMatchMode="contains">
+                <f:facet name="filter">
+                    <p:inputText placeholder="Filtrar por Nombre" onkeyup="PF('propTable').filter()" />
+                </f:facet>
+                <h:outputText value="#{propTable.nombre_trabajador}"/>
+            </p:column>
+
+            <p:column headerText="Email" sortBy="#{propTable.e_mailtrabajador}" filterBy="#{propTable.e_mailtrabajador}" filterMatchMode="contains">
+                <f:facet name="filter">
+                    <p:inputText placeholder="Filtrar por Email" onkeyup="PF('propTable').filter()" />
+                </f:facet>
+                <h:outputText value="#{propTable.e_mailtrabajador}"/>
+            </p:column>
+
+            <p:column headerText="Teléfono" sortBy="#{propTable.telefono_trabajador}" filterBy="#{propTable.telefono_trabajador}" filterMatchMode="contains">
+                <f:facet name="filter">
+                    <p:inputText placeholder="Filtrar por Teléfono" onkeyup="PF('propTable').filter()" />
+                </f:facet>
+                <h:outputText value="#{propTable.telefono_trabajador}"/>
+            </p:column>
+
+            <p:column headerText="Dirección" sortBy="#{propTable.direccion_trabajador}" filterBy="#{propTable.direccion_trabajador}" filterMatchMode="contains">
+                <f:facet name="filter">
+                    <p:inputText placeholder="Filtrar por Dirección" onkeyup="PF('propTable').filter()" />
+                </f:facet>
+                <h:outputText value="#{propTable.direccion_trabajador}"/>
+            </p:column>
+
+            
+
+            <f:facet name="footer">
+                <p:commandButton value="Limpiar Filtros" update="propTable" oncomplete="PF('propTable').clearFilters()" />
+            </f:facet>
+
+        </p:dataTable>
+    </h:form>
+
+</h:body>
 </html>
