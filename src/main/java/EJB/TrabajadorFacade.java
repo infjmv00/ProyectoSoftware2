@@ -53,5 +53,30 @@ public class TrabajadorFacade extends AbstractFacade<Trabajador> implements Trab
         } 
         return trabajador;
     }
+
+    @Override
+    public List<Trabajador> BuscarTelefonoAdministrador(int codigoTrabajador) throws Exception {
+        
+       
+      List<Trabajador> listaAdministradores = null;
+      String consulta;
+      
+        
+        try{
+           consulta = "SELECT t.telefonoTrab FROM Trabajador t WHERE t.idRol = ?1";
+           Query query = em.createQuery(consulta);
+           query.setParameter(1, codigoTrabajador);
+           
+           listaAdministradores = query.getResultList();
+           
+       } catch(Exception e){
+           throw e;
+       }
+        
+       
+       return listaAdministradores;
+    }
+    
+    
     
 }

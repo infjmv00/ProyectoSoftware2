@@ -32,5 +32,7 @@ public interface TrabajadorFacadeLocal {
     
     Trabajador iniciarSesion(Trabajador trab);
     
+    List<Trabajador> BuscarTelefonoAdministrador(int codigoTrabajador) throws Exception;
+    
     
 }
