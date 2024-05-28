@@ -29,4 +29,6 @@ public class MaterialFacade extends AbstractFacade<Material> implements Material
         super(Material.class);
     }
     
+   /* public int getUnidadesTotales()*/
+    
 }

@@ -53,7 +53,7 @@ public class MenuController implements Serializable {
 
     public void establecerPermisos() {
         Trabajador trab = (Trabajador) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("trabajador");
-
+       DefaultSubMenu cerrarSesion = DefaultSubMenu.builder().label("Cerrar Sesión").build();
         for (Menu m : lista) {
 
             if (m.getTipo().equals("S") && m.getRol().getRol().equals(trab.getRol().getRol())) {
@@ -73,7 +73,10 @@ public class MenuController implements Serializable {
                     }
 
                 }
+                 
+            
                 model.getElements().add(firstSubmenu);
+                 
 
             } else {
                 
@@ -86,8 +89,17 @@ public class MenuController implements Serializable {
             
         }
     }
+       
+        
+        cerrarSesion.getElements().add(DefaultMenuItem.builder()
+            .value("Cerrar Sesión")
+            .icon("pi pi-fw pi-sign-out")
+            .command("#{menuController.cerrarSesion}")
+            .build());
+        model.getElements().add(cerrarSesion);
         
     }
+    
     
     public void cerrarSesion(){
         

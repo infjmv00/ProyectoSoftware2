@@ -6,6 +6,7 @@
 package EJB;
 
 import Model.Factura;
+import Model.Presupuesto;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +30,9 @@ public interface FacturaFacadeLocal {
     List<Factura> findRange(int[] range);
 
     int count();
+    
+    float calcularTotalBrutoFactura(Factura factura);
+    
+    float calcularTotalFactura(Factura factura);
     
 }

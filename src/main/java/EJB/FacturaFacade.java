@@ -6,6 +6,7 @@
 package EJB;
 
 import Model.Factura;
+import Model.Factura;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +28,23 @@ public class FacturaFacade extends AbstractFacade<Factura> implements FacturaFac
 
     public FacturaFacade() {
         super(Factura.class);
+    }
+    
+    @Override
+    public float calcularTotalBrutoFactura(Factura factura){
+     
+        int unidades = factura.getCantidad();
+        float precio_unitario = factura.getPrecio_unitario();
+        float bruto_factura = unidades*precio_unitario;
+        return bruto_factura;
+    }
+    
+    //total con iva
+    @Override
+    public float calcularTotalFactura(Factura factura){
+     
+        float total = (this.calcularTotalBrutoFactura(factura)*factura.getIva_aplicado())+this.calcularTotalBrutoFactura(factura);
+        return total;
     }
     
 }
