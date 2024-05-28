@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -32,6 +33,11 @@ public class Presupuesto implements Serializable {
     @JoinColumn(name = "id_Cliente", nullable = false)
     private Cliente cliente;
 
+    
+    @OneToOne
+    @JoinColumn(name = "id_material", nullable = false)
+    private Material material;
+    
     @Column(name = "descripcion")
     private String descripcion;
 
@@ -43,7 +49,16 @@ public class Presupuesto implements Serializable {
 
 
     @Column(name = "iva_aplicado")
-    private int iva_aplicado;
+    private float iva_aplicado;
+    
+    @Column(name = "total")
+    private float total;
+    
+        @Column(name = "precio_unitario")
+    private float precio_unitario;
+        
+        @Column(name = "total_bruto")
+    private float total_bruto;
 
     public int getN_presupuesto() {
         return n_presupuesto;
@@ -59,6 +74,14 @@ public class Presupuesto implements Serializable {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public Material getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(Material material) {
+        this.material = material;
     }
 
     public String getDescripcion() {
@@ -85,23 +108,51 @@ public class Presupuesto implements Serializable {
         this.tipo = tipo;
     }
 
-    public int getIva_aplicado() {
+    public float getIva_aplicado() {
         return iva_aplicado;
     }
 
-    public void setIva_aplicado(int iva_aplicado) {
+    public void setIva_aplicado(float iva_aplicado) {
         this.iva_aplicado = iva_aplicado;
+    }
+
+    public float getTotal() {
+        return total;
+    }
+
+    public void setTotal(float total) {
+        this.total = total;
+    }
+
+    public float getPrecio_unitario() {
+        return precio_unitario;
+    }
+
+    public void setPrecio_unitario(float precio_unitario) {
+        this.precio_unitario = precio_unitario;
+    }
+
+    public float getTotal_bruto() {
+        return total_bruto;
+    }
+
+    public void setTotal_bruto(float total_bruto) {
+        this.total_bruto = total_bruto;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 79 * hash + this.n_presupuesto;
-        hash = 79 * hash + Objects.hashCode(this.cliente);
-        hash = 79 * hash + Objects.hashCode(this.descripcion);
-        hash = 79 * hash + this.cantidad;
-        hash = 79 * hash + Objects.hashCode(this.tipo);
-        hash = 79 * hash + this.iva_aplicado;
+        hash = 37 * hash + this.n_presupuesto;
+        hash = 37 * hash + Objects.hashCode(this.cliente);
+        hash = 37 * hash + Objects.hashCode(this.material);
+        hash = 37 * hash + Objects.hashCode(this.descripcion);
+        hash = 37 * hash + this.cantidad;
+        hash = 37 * hash + Objects.hashCode(this.tipo);
+        hash = 37 * hash + Float.floatToIntBits(this.iva_aplicado);
+        hash = 37 * hash + Float.floatToIntBits(this.total);
+        hash = 37 * hash + Float.floatToIntBits(this.precio_unitario);
+        hash = 37 * hash + Float.floatToIntBits(this.total_bruto);
         return hash;
     }
 
@@ -123,7 +174,16 @@ public class Presupuesto implements Serializable {
         if (this.cantidad != other.cantidad) {
             return false;
         }
-        if (this.iva_aplicado != other.iva_aplicado) {
+        if (Float.floatToIntBits(this.iva_aplicado) != Float.floatToIntBits(other.iva_aplicado)) {
+            return false;
+        }
+        if (Float.floatToIntBits(this.total) != Float.floatToIntBits(other.total)) {
+            return false;
+        }
+        if (Float.floatToIntBits(this.precio_unitario) != Float.floatToIntBits(other.precio_unitario)) {
+            return false;
+        }
+        if (Float.floatToIntBits(this.total_bruto) != Float.floatToIntBits(other.total_bruto)) {
             return false;
         }
         if (!Objects.equals(this.descripcion, other.descripcion)) {
@@ -135,8 +195,17 @@ public class Presupuesto implements Serializable {
         if (!Objects.equals(this.cliente, other.cliente)) {
             return false;
         }
+        if (!Objects.equals(this.material, other.material)) {
+            return false;
+        }
         return true;
     }
+
+    
+
+   
     
     
+
+   
 }

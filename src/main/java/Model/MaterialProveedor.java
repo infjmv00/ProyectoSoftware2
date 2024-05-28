@@ -23,11 +23,12 @@ import javax.persistence.Table;
  * @author Jose Maria
  */
 @Entity
-@Table(name="tblRoles")
+@Table(name="tblmaterialproveedor")
 public class MaterialProveedor implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idPedido;
     
     @JoinColumn(name = "CIFpro", nullable = false)
     @OneToOne
@@ -43,11 +44,20 @@ public class MaterialProveedor implements Serializable {
     @Column(name = "unidades")
     private int unidades;
 
-    @Column(name = "importe_ud")
-    private float importe_unidad;
 
     @Column(name = "activo")
     private boolean activo;
+    
+    @Column(name = "finalizado")
+    private boolean finalizado;
+
+    public int getIdPedido() {
+        return idPedido;
+    }
+
+    public void setIdPedido(int idPedido) {
+        this.idPedido = idPedido;
+    }
 
     public Proveedor getProveedor() {
         return proveedor;
@@ -81,14 +91,6 @@ public class MaterialProveedor implements Serializable {
         this.unidades = unidades;
     }
 
-    public float getImporte_unidad() {
-        return importe_unidad;
-    }
-
-    public void setImporte_unidad(float importe_unidad) {
-        this.importe_unidad = importe_unidad;
-    }
-
     public boolean isActivo() {
         return activo;
     }
@@ -97,15 +99,24 @@ public class MaterialProveedor implements Serializable {
         this.activo = activo;
     }
 
+    public boolean isFinalizado() {
+        return finalizado;
+    }
+
+    public void setFinalizado(boolean finalizado) {
+        this.finalizado = finalizado;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 89 * hash + Objects.hashCode(this.proveedor);
-        hash = 89 * hash + Objects.hashCode(this.material);
-        hash = 89 * hash + Objects.hashCode(this.fecha);
-        hash = 89 * hash + this.unidades;
-        hash = 89 * hash + Float.floatToIntBits(this.importe_unidad);
-        hash = 89 * hash + (this.activo ? 1 : 0);
+        hash = 61 * hash + this.idPedido;
+        hash = 61 * hash + Objects.hashCode(this.proveedor);
+        hash = 61 * hash + Objects.hashCode(this.material);
+        hash = 61 * hash + Objects.hashCode(this.fecha);
+        hash = 61 * hash + this.unidades;
+        hash = 61 * hash + (this.activo ? 1 : 0);
+        hash = 61 * hash + (this.finalizado ? 1 : 0);
         return hash;
     }
 
@@ -121,13 +132,16 @@ public class MaterialProveedor implements Serializable {
             return false;
         }
         final MaterialProveedor other = (MaterialProveedor) obj;
+        if (this.idPedido != other.idPedido) {
+            return false;
+        }
         if (this.unidades != other.unidades) {
             return false;
         }
-        if (Float.floatToIntBits(this.importe_unidad) != Float.floatToIntBits(other.importe_unidad)) {
+        if (this.activo != other.activo) {
             return false;
         }
-        if (this.activo != other.activo) {
+        if (this.finalizado != other.finalizado) {
             return false;
         }
         if (!Objects.equals(this.proveedor, other.proveedor)) {
@@ -141,6 +155,13 @@ public class MaterialProveedor implements Serializable {
         }
         return true;
     }
+
+    
+    
+
+   
+
+    
 
     
     

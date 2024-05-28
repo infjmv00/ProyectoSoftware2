@@ -27,7 +27,7 @@ public class Cliente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_Cliente;
-
+ 
     @Column(name = "CIFNIFcli")
     private String CIFNIFcli;
 
