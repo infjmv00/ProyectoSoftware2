@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Detalles del cliente</title>
+    <h:outputScript name="js/spanishCalendar.js" />
+</h:head>
+<h:body>
+    
+    <div class="card">
+        <h:form id="clienteForm">
+            <p:messages id="messages" showDetail="true" closable="true"/>
+            
+            <p:fieldset legend="Datos personales">
+                <p:panelGrid columns="2">
+                    <p:outputLabel for="nifCliente" value="NIF:" />
+                    <p:inputText id="nifCliente" value="#{altaClienteController.cliente.CIFNIFcli}" required="true" />
+                    
+                    <p:outputLabel for="fechaNacimiento" value="Fecha de nacimiento:" />
+                    <p:calendar id="fechaNacimiento" value="#{altaClienteController.cliente.fecha}" required="true" pattern="dd/MM/yyyy"/>
+                    
+                    <p:outputLabel for="nombre" value="Nombre:" />
+                    <p:inputText id="nombre" value="#{altaClienteController.cliente.nombrecli}" required="true"/>
+                    
+                    <p:outputLabel for="apellidos" value="Apellidos:" />
+                    <p:inputText id="apellidos" value="#{altaClienteController.cliente.apellidoscli}" required="true"/>
+                    
+                    <p:outputLabel for="direccion" value="Dirección:" />
+                    <p:inputText id="direccion" value="#{altaClienteController.cliente.direccioncli}" required="true" />
+                    
+                    <p:outputLabel for="telefonoTrabajador" value="Teléfono:" />
+                    <p:inputText id="telefonoTrabajador" value="#{altaClienteController.cliente.telefonocli}" required="true" />
+                    
+                    <p:outputLabel for="correoElectronico" value="Correo electrónico:" />
+                    <p:inputText id="correoElectronico" value="#{altaClienteController.cliente.e_mailcli}" required="true"/>
+                     
+                    <p:selectBooleanCheckbox value="#{altaClienteController.cliente.activocli}" itemLabel="Activo"/>
+                    
+                </p:panelGrid>
+                <p:commandButton value="Insertar Cliente" actionListener="#{altaClienteController.insertarCliente()}" update="clienteForm"/>
+            </p:fieldset>
+            
+            
+        </h:form>
+    </div>
+</h:body>
+</html>
