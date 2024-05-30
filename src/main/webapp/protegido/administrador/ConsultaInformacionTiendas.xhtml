@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/template/plantilla.xhtml">
+
+            <ui:define name="content">
+                <h1>Informcion de tiendas</h1>
+
+    <h:form id="form">
+
+        <p:dataTable id="empTable" var="emp" value="#{consultarInformacionTiendasController.listaEmpresas}"
+                     paginator="true" rows="10" rowsPerPageTemplate="5,10,15" filteredValue="#{consultarInformacionTiendasController.filteredEmpresa}"
+                     selectionMode="single" selection="#{consultarInformacionTiendasController.selectedEmpresa}" 
+                     rowKey="#{emp.idEmpresa}" widgetVar="empTable" globalFilter="#{consultarInformacionTiendasController.globalFilter}">
+
+          
+
+            <p:column headerText="ID" sortBy="#{emp.idEmpresa}" filterBy="#{emp.idEmpresa}" filterMatchMode="contains">
+                <f:facet name="filter">
+                    <p:inputText placeholder="Filtrar por ID" onkeyup="PF('empTable').filter()" />
+                </f:facet>
+                <h:outputText value="#{emp.idEmpresa}"/>
+            </p:column>
+
+            <p:column headerText="Cif" sortBy="#{emp.cif_empresa}" filterBy="#{emp.cif_empresa}" filterMatchMode="contains">
+                <f:facet name="filter">
+                    <p:inputText placeholder="Filtrar por CIF" onkeyup="PF('empTable').filter()" />
+                </f:facet>
+                <h:outputText value="#{emp.cif_empresa}"/>
+            </p:column>
+
+            <p:column headerText="Nombre de la empresa" sortBy="#{emp.nombre_empresa}" filterBy="#{emp.nombre_empresa}" filterMatchMode="contains">
+                <f:facet name="filter">
+                    <p:inputText placeholder="Filtrar por Nombre" onkeyup="PF('empTable').filter()" />
+                </f:facet>
+                <h:outputText value="#{emp.nombre_empresa}"/>
+            </p:column>
+
+            <p:column headerText="Email" sortBy="#{emp.email}" filterBy="#{emp.email}" filterMatchMode="contains">
+                <f:facet name="filter">
+                    <p:inputText placeholder="Filtrar por Email" onkeyup="PF('empTable').filter()" />
+                </f:facet>
+                <h:outputText value="#{emp.email}"/>
+            </p:column>
+
+            <p:column headerText="Teléfono" sortBy="#{emp.telefono_empresa}" filterBy="#{emp.telefono_empresa}" filterMatchMode="contains">
+                <f:facet name="filter">
+                    <p:inputText placeholder="Filtrar por Teléfono" onkeyup="PF('empTable').filter()" />
+                </f:facet>
+                <h:outputText value="#{emp.telefono_empresa}"/>
+            </p:column>
+
+            <p:column headerText="Dirección" sortBy="#{emp.direccion_empresa}" filterBy="#{emp.direccion_empresa}" filterMatchMode="contains">
+                <f:facet name="filter">
+                    <p:inputText placeholder="Filtrar por Dirección" onkeyup="PF('empTable').filter()" />
+                </f:facet>
+                <h:outputText value="#{emp.direccion_empresa}"/>
+            </p:column>
+
+            <p:column headerText="Activo" sortBy="#{emp.activaEmpresa}" filterBy="#{emp.activaEmpresa}" filterMatchMode="equals">
+                <f:facet name="filter">
+                    <p:selectOneMenu onchange="PF('empTable').filter()">
+                        <f:selectItem itemLabel="Todos" itemValue="" />
+                        <f:selectItem itemLabel="Sí" itemValue="true" />
+                        <f:selectItem itemLabel="No" itemValue="false" />
+                    </p:selectOneMenu>
+                </f:facet>
+                <h:outputText value="#{emp.activaEmpresa}"/>
+            </p:column>
+
+            <f:facet name="footer">
+                <p:commandButton value="Limpiar Filtros" update="empTable" oncomplete="PF('empTable').clearFilters()" />
+            </f:facet>
+
+        </p:dataTable>
+    </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

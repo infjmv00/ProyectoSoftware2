@@ -1,24 +1,23 @@
-<!DOCTYPE html>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
 
-<h:head>
-    <title>Detalles del proveedor</title>
-    <h:outputScript name="js/spanishCalendar.js" />
-</h:head>
-<h:body>
-    
-    <div class="card">
+    <body>
+
+        <ui:composition template="./../../WEB-INF/template/plantilla.xhtml">
+
+            <ui:define name="content">
+                <div class="card">
         <h:form id="clienteForm">
             <p:messages id="messages" showDetail="true" closable="true"/>
             
             <p:fieldset legend="Datos personales">
                 <p:panelGrid columns="2">
                     <p:outputLabel for="nifProveedor" value="NIF:" />
-                    <p:inputText id="nifCliente" value="#{altaClienteController.cliente.CIFNIFcli}" required="true" />
+                    <p:inputText id="nifProveedor" value="#{altaProveedorController.proveedor.CIFprov}" required="true" />
                     
                     
                     
@@ -28,7 +27,7 @@
                     <p:outputLabel for="apellidosProveedor" value="Apellidos:" />
                     <p:inputText id="apellidosProveedor" value="#{altaProveedorController.proveedor.apellidosprov}" required="true"/>
                     
-                    <p:outputLabel for="direccion" value="Dirección:" />
+                    <p:outputLabel for="direccionProveedor" value="Dirección:" />
                     <p:inputText id="direccionProveedor" value="#{altaProveedorController.proveedor.direccion}" required="true" />
                     
                     <p:outputLabel for="telefonoProveedor" value="Teléfono:" />
@@ -46,5 +45,9 @@
             
         </h:form>
     </div>
-</h:body>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
 </html>

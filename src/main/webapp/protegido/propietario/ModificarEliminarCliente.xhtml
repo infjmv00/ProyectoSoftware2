@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/template/plantilla.xhtml">
+
+            <ui:define name="content">
+                <h:form id="form20">
+            <p:growl id="msgs65" showDetail="true"/>
+            <div class="card">
+                <h5>Row Editing</h5>
+                <p:dataTable id="products1" var="cliente" value="#{modificarEliminarClienteController.listaClientes}" editable="true" style="margin-bottom:20px">
+                    <p:ajax event="rowEdit" listener="#{modificarEliminarClienteController.onRowEdit}" update=":form:msgs65"/>
+                    <p:ajax event="rowEditCancel" listener="#{modificarEliminarClienteController.onRowCancel}" update=":form:msgs65"/>
+
+                    <p:column headerText="NIF/DNI">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{cliente.CIFNIFcli}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText id="modelInput" value="#{cliente.CIFNIFcli}" style="width:100%"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Nombre">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{cliente.nombrecli}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{cliente.nombrecli}" style="width:100%" label="Nombre"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Apellidos">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{cliente.apellidoscli}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{cliente.apellidoscli}" style="width:100%" label="Apellidos"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="Direccion">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{cliente.direccioncli}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{cliente.direccioncli}" style="width:100%" label="Direccion"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="Telefono">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{cliente.telefonocli}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{cliente.telefonocli}" style="width:100%" label="Telefono"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="Fecha de nacimiento">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{cliente.fecha}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:calendar id="fechaNacimiento" value="#{cliente.fecha}" pattern="dd/MM/yyyy"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    
+                    
+                    <p:column headerText="Activo">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{cliente.activocli}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:selectBooleanCheckbox value="#{cliente.activocli}" itemLabel="Activo"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Acción">
+                        <p:commandLink value="Eliminar"  action="#{modificarEliminarClienteController.eliminar(cliente)}" styleClass="ui-button-danger mr-2" update="form">
+                        
+                            <!-- Definimos el cuadro de diálogo fuera del dataTable -->
+                   <p:confirm header="ATENCION" message="Va a eliminar a este empleado. ¿Desea continuar?" icon="pi pi-exclamation-triangle"/>
+                        </p:commandLink>
+                    </p:column>
+                    
+                    <p:column style="width:6rem">
+                        <p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" saveTitle="Save Row"/>
+                    </p:column>
+                    <!-- Definimos el cuadro de diálogo fuera del dataTable -->
+           
+                </p:dataTable>
+            </div>
+        
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+            <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" />
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+            
+        </p:confirmDialog>
+        </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

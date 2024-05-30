@@ -11,6 +11,8 @@ import java.io.Serializable;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -38,6 +40,7 @@ public class AltaClienteController implements Serializable {
         
         try{
             clienteEJB.create(cliente);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "cliente creado correctamente "+cliente.getId_Cliente()));
             System.out.println("Cliente insertdo correctamente con id: "+cliente.getId_Cliente());
         } catch(Exception e){
             System.out.println("Erroe al insertar el cliente: "+e.getMessage());
