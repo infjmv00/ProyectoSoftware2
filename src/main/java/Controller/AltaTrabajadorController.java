@@ -31,7 +31,7 @@ import org.primefaces.PrimeFaces;
  */
 
 @Named
-@SessionScoped
+@ViewScoped
 public class AltaTrabajadorController implements Serializable {
     
     @EJB
@@ -94,9 +94,9 @@ public class AltaTrabajadorController implements Serializable {
             trabajadorEJB.create(trabajador);
             
             System.out.println(trabajador.getIdTrabajador());
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Trabajador creado correctamente "+trabajador.getIdTrabajador()));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Proveedor creado correctamente "+trabajador.getIdTrabajador()));
             System.out.println(trabajador.getNombre_trabajador()+ " insertado correctamente");
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Stock creado correctamente "+trabajador.getNombre_trabajador()));
+            
            
         } catch(Exception e){
             

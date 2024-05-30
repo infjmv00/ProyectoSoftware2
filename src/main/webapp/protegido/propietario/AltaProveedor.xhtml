@@ -11,7 +11,7 @@
 
             <ui:define name="content">
                 <div class="card">
-        <h:form id="clienteForm">
+        <h:form id="proveedorForm">
             <p:messages id="messages" showDetail="true" closable="true"/>
             
             <p:fieldset legend="Datos personales">
@@ -39,7 +39,7 @@
                     <p:selectBooleanCheckbox value="#{altaProveedorController.proveedor.activoprov}" itemLabel="Activo"/>
                     
                 </p:panelGrid>
-                <p:commandButton value="Insertar Cliente" actionListener="#{altaProveedorController.insertarProveedor()}" update="clienteForm"/>
+                <p:commandButton value="Insertar Cliente" actionListener="#{altaProveedorController.insertarProveedor()}" update="proveedorForm"/>
             </p:fieldset>
             
             

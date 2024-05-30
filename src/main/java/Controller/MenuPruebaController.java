@@ -105,8 +105,8 @@ public class MenuPruebaController implements Serializable {
         
         
         DefaultMenuItem itemEliminarTrabajador = DefaultMenuItem.builder().value("Eliminar").build();
-        itemModificarTrabajador.setUrl("/ProyectoSoftware2/faces/protegido/emplesdo/EliminarTrabajador.xhtml");
-        firstSubmenu.getElements().add(itemModificarTrabajador);
+        itemEliminarTrabajador.setUrl("/ProyectoSoftware2/faces/protegido/propietario/EliminarTrabajador.xhtml");
+        firstSubmenu.getElements().add(itemEliminarTrabajador);
 
         DefaultSubMenu secondSubmenu = DefaultSubMenu.builder().label("Nominas").build();
 
@@ -131,11 +131,11 @@ public class MenuPruebaController implements Serializable {
          
          DefaultMenuItem itemAltaMaterial = DefaultMenuItem.builder().value("Alta").build();
          itemAltaMaterial.setUrl("/ProyectoSoftware2/faces/protegido/propietario/AltaMaterial.xhtml");
-         FamiliasSubmenu.getElements().add(itemAltaMaterial);
+         MaterialSubmenu.getElements().add(itemAltaMaterial);
          
          DefaultMenuItem itemModificarMaterial = DefaultMenuItem.builder().value("Modificar").build();
          itemModificarMaterial.setUrl("/ProyectoSoftware2/faces/protegido/propietario/ModificarMaterial.xhtml");
-         FamiliasSubmenu.getElements().add(itemModificarMaterial);
+         MaterialSubmenu.getElements().add(itemModificarMaterial);
          
          
          DefaultSubMenu ClientesSubmenu = DefaultSubMenu.builder().label("Clientes").build();
@@ -156,7 +156,7 @@ public class MenuPruebaController implements Serializable {
          
          DefaultMenuItem itemModificarPresupuesto = DefaultMenuItem.builder().value("Modificar").build();
          itemModificarPresupuesto.setUrl("/ProyectoSoftware2/faces/protegido/propietario/ModificarPresupuesto.xhtml");
-         FamiliasSubmenu.getElements().add(itemModificarPresupuesto);
+         PresupuestoSubmenu.getElements().add(itemModificarPresupuesto);
          
          DefaultSubMenu FacturasSubmenu = DefaultSubMenu.builder().label("Facturas").build();
          
@@ -178,7 +178,7 @@ public class MenuPruebaController implements Serializable {
          itemModificarproveedor.setUrl("/ProyectoSoftware2/faces/protegido/propietario/ModificarProveedor.xhtml");
          ProveedoresSubmenu.getElements().add(itemModificarproveedor);
          
-         DefaultMenuItem itemEliminarproveedor = DefaultMenuItem.builder().value("Modificar").build();
+         DefaultMenuItem itemEliminarproveedor = DefaultMenuItem.builder().value("Eliminar").build();
          itemEliminarproveedor.setUrl("/ProyectoSoftware2/faces/protegido/propietario/EliminarProveedor.xhtml");
          ProveedoresSubmenu.getElements().add(itemEliminarproveedor);
         
@@ -197,11 +197,11 @@ public class MenuPruebaController implements Serializable {
          
          DefaultMenuItem itemConsultaEmpleados = DefaultMenuItem.builder().value("consulta empleados").build();
          itemConsultaEmpleados.setUrl("/ProyectoSoftware2/faces/protegido/propietario/ConsultaEmpleados.xhtml");
-         StockSubmenu.getElements().add(itemConsultaEmpleados);
+         ConsultaSubmenu.getElements().add(itemConsultaEmpleados);
          
          DefaultMenuItem itemConsultaProveedores = DefaultMenuItem.builder().value("Consulta Proveedores").build();
          itemConsultaProveedores.setUrl("/ProyectoSoftware2/faces/protegido/propietario/ConsultaProveedores.xhtml");
-         StockSubmenu.getElements().add(itemConsultaProveedores);
+         ConsultaSubmenu.getElements().add(itemConsultaProveedores);
         
         
         
@@ -216,32 +216,7 @@ public class MenuPruebaController implements Serializable {
          
          model.getElements().add(StockSubmenu);
         
-        model.getElements().add(ConsultaSubmenu);
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        model.getElements().add(ConsultaSubmenu);    
         
         
         // Add additional roles if necessary
@@ -286,11 +261,11 @@ public class MenuPruebaController implements Serializable {
          
          DefaultMenuItem itemAltaMaterial = DefaultMenuItem.builder().value("Alta").build();
          itemAltaMaterial.setUrl("/ProyectoSoftware2/faces/protegido/propietario/AltaMaterial.xhtml");
-         FamiliasSubmenu.getElements().add(itemAltaMaterial);
+         MaterialSubmenu.getElements().add(itemAltaMaterial);
          
          DefaultMenuItem itemModificarMaterial = DefaultMenuItem.builder().value("Modificar").build();
          itemModificarMaterial.setUrl("/ProyectoSoftware2/faces/protegido/propietario/ModificarMaterial.xhtml");
-         FamiliasSubmenu.getElements().add(itemModificarMaterial);
+         MaterialSubmenu.getElements().add(itemModificarMaterial);
          
          DefaultSubMenu PresupuestoSubmenu = DefaultSubMenu.builder().label("Presupuestos").build();
          
@@ -300,7 +275,7 @@ public class MenuPruebaController implements Serializable {
          
          DefaultMenuItem itemModificarPresupuesto = DefaultMenuItem.builder().value("Modificar").build();
          itemModificarPresupuesto.setUrl("/ProyectoSoftware2/faces/protegido/propietario/ModificarPresupuesto.xhtml");
-         FamiliasSubmenu.getElements().add(itemModificarPresupuesto);
+        PresupuestoSubmenu.getElements().add(itemModificarPresupuesto);
          
          DefaultSubMenu FacturasSubmenu = DefaultSubMenu.builder().label("Facturas").build();
          
@@ -322,7 +297,7 @@ public class MenuPruebaController implements Serializable {
          itemModificarproveedor.setUrl("/ProyectoSoftware2/faces/protegido/propietario/ModificarProveedor.xhtml");
          ProveedoresSubmenu.getElements().add(itemModificarproveedor);
          
-         DefaultMenuItem itemEliminarproveedor = DefaultMenuItem.builder().value("Modificar").build();
+         DefaultMenuItem itemEliminarproveedor = DefaultMenuItem.builder().value("Eliminar").build();
          itemEliminarproveedor.setUrl("/ProyectoSoftware2/faces/protegido/propietario/EliminarProveedor.xhtml");
          ProveedoresSubmenu.getElements().add(itemEliminarproveedor);
         
@@ -341,11 +316,11 @@ public class MenuPruebaController implements Serializable {
          
          DefaultMenuItem itemConsultaEmpleados = DefaultMenuItem.builder().value("consulta empleados").build();
          itemConsultaEmpleados.setUrl("/ProyectoSoftware2/faces/protegido/propietario/ConsultaEmpleados.xhtml");
-         StockSubmenu.getElements().add(itemConsultaEmpleados);
+         ConsultaSubmenu.getElements().add(itemConsultaEmpleados);
          
          DefaultMenuItem itemConsultaProveedores = DefaultMenuItem.builder().value("Consulta Proveedores").build();
          itemConsultaProveedores.setUrl("/ProyectoSoftware2/faces/protegido/propietario/ConsultaProveedores.xhtml");
-         StockSubmenu.getElements().add(itemConsultaProveedores);
+         ConsultaSubmenu.getElements().add(itemConsultaProveedores);
          
          DefaultMenuItem itemConsultaTiendas = DefaultMenuItem.builder().value("Consulta Tiendas").build();
          itemConsultaTiendas.setUrl("/ProyectoSoftware2/faces/protegido/propietario/ConsultaInformacionTiendas.xhtml");
@@ -398,7 +373,7 @@ public class MenuPruebaController implements Serializable {
         
         // Redirige a la página de inicio
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml?faces-redirect=true");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("../index.xhtml?faces-redirect=true");
         } catch (Exception e) {
             System.out.println("Error en cerrar sesion: " +e.getMessage());
         }

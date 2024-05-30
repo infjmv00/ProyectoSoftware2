@@ -7,11 +7,10 @@
 
     <body>
 
-
         <ui:composition template="./../../WEB-INF/template/plantilla.xhtml">
 
             <ui:define name="content">
-                <h:form id="empresaform">
+              <h:form>
             <p:outputLabel class="headline_class" value ="introduzca CIF:  "/>
             <p:inputText value="#{altaEmpresaController.empresa.cif_empresa}" />
              <p:outputLabel class="headline_class" value ="Introduza nombre de la empresa "/>
@@ -26,7 +25,7 @@
             
          
             <p:selectBooleanCheckbox value="#{altaEmpresaController.empresa.activaEmpresa}" itemLabel="Activo"/>
-            <p:commandButton  value ="Insertar Empresa" actionListener="#{altaEmpresaController.insertarEmpresa()}" update="empresaform" />
+            <p:commandButton  value ="Insertar Empresa" actionListener="#{altaEmpresaController.insertarEmpresa()}"/>
            
                 
         

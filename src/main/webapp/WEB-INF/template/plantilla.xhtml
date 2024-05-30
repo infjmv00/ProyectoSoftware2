@@ -1,4 +1,3 @@
-
 <?xml version='1.0' encoding='UTF-8' ?> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -9,8 +8,8 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <h:outputStylesheet name="./css/default.css"/>
-        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <h:outputStylesheet name="/resources/css/default.css"/>
+        <h:outputStylesheet name="/resources/css/cssLayout.css"/>
         <f:event type="preRenderView" listener="#{plantillaController.verificarSesion()}"/>
         <title>Facelets Template</title>
     </h:head>
@@ -19,22 +18,26 @@
 
         <div id="top">
             <ui:insert name="top">
+                
                 <h:form>
                     <p:menubar model="#{menuPruebaController.model}"/>
+                    <f:facet name="options">
+                        <p:outputLabel value="Prueba"/>
+                   </f:facet>
                 </h:form>
+
             </ui:insert>
         </div>
 
         <div id="content" class="center_content">
-            <ui:insert name="content">Content</ui:insert>
+            <ui:insert name="content"></ui:insert>
         </div>
 
         <div id="bottom">
             <ui:insert name="bottom">
                 
-                <pfooter>
-                    Practica de Software 2
-                </pfooter>
+                
+                practica de software 2
             </ui:insert>
         </div>
 

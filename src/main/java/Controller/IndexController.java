@@ -65,7 +65,7 @@ public class IndexController implements Serializable {
         FacesContext context = FacesContext.getCurrentInstance();
         ExternalContext externalContext = context.getExternalContext();
         String contextPath = externalContext.getRequestContextPath();
-        String redirectURL = contextPath + "/faces/AltaTrabajador.xhtml";
+        String redirectURL = contextPath + "/faces/protegido/propietario/AltaTrabajador.xhtml";
         
         try {
             externalContext.redirect(redirectURL);

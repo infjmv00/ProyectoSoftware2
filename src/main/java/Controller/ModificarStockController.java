@@ -92,9 +92,7 @@ public class ModificarStockController  implements Serializable{
         System.out.println("Cantidad real: "+stock.getCantidadReal());
         
         
-        if(listaFacturas!=null){
-            
-        }
+        
         
         // Logica para editar en funcion de los pedidos
         

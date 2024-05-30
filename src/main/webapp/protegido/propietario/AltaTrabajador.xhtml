@@ -75,16 +75,21 @@
                     <p:inputText id="nombreUsuario" value="#{altaTrabajadorController.trabajador.usuario}" required="true" />
                     
                     <p:outputLabel for="pwd1" value="Contraseña:" />
-                    <p:password id="pwd1" value="#{altaTrabajadorController.trabajador.contrasenya}" label="Contraseña 1" required="true"/>
+                    <p:password id="pwd1" value="#{altaTrabajadorController.trabajador.contrasenya}"  required="true" requiredMessage="Campo requerido"
+                                validatorMessage="Las claves no coinciden." weakLabel="Débil" strongLabel="Fuerte" goodLabel="Bueno"
+                                match="pwd2" feedback="true" promptLabel="Ingrese una clave"/>
+                    
+                   
 
                     
+                     
                     <p:outputLabel for="pwd2" value="Repita la contraseña:" />
                     <p:password id="pwd2" binding="#{pwd2}" value="#{altaTrabajadorController.trabajador.contrasenya}" label="Contraseña 2" required="true"/>
 
                 </p:panelGrid>
-               <p:commandButton value="Insertar Trabajador" actionListener="#{altaTrabajadorController.insertarTrabajador}" >
+               <p:commandButton value="Insertar Trabajador" actionListener="#{altaTrabajadorController.insertarTrabajador}"  update="trabajadorForm"/>
                                  
-               </p:commandButton>
+               
 
             </p:fieldset>
         </h:form>

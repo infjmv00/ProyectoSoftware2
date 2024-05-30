@@ -12,7 +12,7 @@
 
             <ui:define name="content">
                <div class="card">
-            <h:form id="trabajadorForm">
+            <h:form id="nominaForm">
                 <p:messages id="messages" showDetail="true" closable="true"/>
                 <p:fieldset legend="Datos de la nomina">
                     <p:panelGrid columns="2">
@@ -39,7 +39,7 @@
                         <h:outputLabel for="total" value="Total:" />
                         <h:outputText id="total" value="#{altaNominaController.sueldo.total}" />
                     </p:panelGrid>
-                    <p:commandButton value="Calcular" actionListener="#{altaNominaController.insertarNomina}" update="trabajadorForm" />
+                    <p:commandButton value="Calcular" actionListener="#{altaNominaController.insertarNomina}" update="nominaForm" />
                 </p:fieldset>
             </h:form>
         </div>
