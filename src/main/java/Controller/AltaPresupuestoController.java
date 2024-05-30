@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -70,6 +72,7 @@ public class AltaPresupuestoController implements Serializable {
              presupuesto.setTotal(presupuestoEJB.calcularTotalPresupuesto(presupuesto));
              presupuestoEJB.create(presupuesto);
              System.out.println("Presupuesto  creado correctamente con id: "+presupuesto.getN_presupuesto());
+              FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Pedido creado correctamente "+presupuesto.getN_presupuesto()));
          } catch(Exception e){
              System.out.println("Error al insertar el presupuesto: "+e.getMessage());
          }

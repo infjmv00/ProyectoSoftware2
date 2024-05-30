@@ -11,6 +11,8 @@ import java.io.Serializable;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -39,6 +41,7 @@ public class AltaEmpresaController implements Serializable{
          try{
             empresaEJB.create(empresa);
             System.out.println(empresa.getNombre_empresa()+ " Insertada correctamente");
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Empresa creada correctamente "+empresa.getIdEmpresa()));
         } catch(Exception e){
             
             System.out.println("Error al insertar empresa en la base de datos "+ e.getMessage());

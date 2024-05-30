@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -69,6 +71,7 @@ public class AltaPedidoController implements Serializable {
             pedido.setMaterial(material);
             pedidoEJB.create(pedido);
             System.out.println("Pedido realizado con exito: "+pedido.getIdPedido());
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Pedido creado correctamente "+pedido.getIdPedido()));
             
         } catch(Exception e){
             System.out.println("Error al realizar el pedido: "+e.getMessage());

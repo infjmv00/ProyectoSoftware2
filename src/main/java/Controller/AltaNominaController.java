@@ -16,6 +16,8 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -60,6 +62,7 @@ public class AltaNominaController implements Serializable {
             sueldo.setTrabajador(trabajador);
             sueldoEJB.create(sueldo);
             System.out.println(sueldo.getIdSueldo()+ " insertado correctamente");
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Nomina creada correctamente "+sueldo.getIdSueldo()));
         } catch(Exception e){
             
             System.out.println("Error al insertar Sueldo en la base de datos "+ e.getMessage() + "iDENTIFICADOR DEL TRBAJADOR :"+trabajador.getIdTrabajador());

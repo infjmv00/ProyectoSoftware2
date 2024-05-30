@@ -12,6 +12,8 @@ import java.io.Serializable;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -43,6 +45,7 @@ public class AltaFamiliaController implements Serializable {
         try{
             familiaEJB.create(familia);
             System.out.println("Familia creada con identificador "+familia.getCodigoFamilia()+" correctamente");
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Familia creada correctamente "+familia.getCodigoFamilia()));
             
         } catch(Exception e){
             System.out.println("Error al insertar familia: "+e.getMessage());
