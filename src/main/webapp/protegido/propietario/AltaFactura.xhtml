@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/template/plantilla.xhtml">
+
+            <ui:define name="content">
+                <div class="card">
+            <h:form id="facturaForm">
+                <p:messages id="messages" showDetail="true" closable="true"/>
+                <p:fieldset legend="Datos de la factura">
+                    <p:panelGrid columns="2">
+                        <p:outputLabel for="cboCliente" value="Cliente"/>
+                        <p:selectOneMenu id="cboCliente" value="#{altaFacturaController.cliente.id_Cliente}" required="true">
+                            <f:selectItems value="#{altaFacturaController.listaClientes}" var="cli" itemLabel="#{cli.nombrecli}" itemValue="#{cli.id_Cliente}" />
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="descripcionfactura" value="descripcion:" />
+                        <p:inputText id="descripcionfactura" value="#{altaFacturaController.factura.descripcion}" required="true" />
+
+                        <p:outputLabel for="tipoTrabajo" value="Tipo de trabajo:" />
+                        <p:inputText id="tipoTrabajo" value="#{altaFacturaController.factura.tipo}" required="true"/>
+
+                        <p:outputLabel for="cboMaterial" value="Material"/>
+                        <p:selectOneMenu id="cboMaterial" value="#{altaFacturaController.material.idMaterial}" required="true">
+                            <f:selectItems value="#{altaFacturaController.listaMateriales}" var="mat" itemLabel="#{mat.codigo_material}" itemValue="#{mat.idMaterial}" />
+                        </p:selectOneMenu>
+                        
+                        <p:outputLabel for="unidadesMaterial" value="Unidades Material:" />
+                        <p:inputText id="unidadesMaterial" value="#{altaFacturaController.factura.cantidad}" required="true"/>
+
+                        <p:outputLabel for="precioUnitario" value="precio unitario:" />
+                        <p:inputText id="precioUnitario" value="#{altaFacturaController.factura.precio_unitario}" required="true"/>
+
+                        <p:outputLabel for="iva" value="Iva Aplicado:" />
+                        <p:inputText id="iva" value="#{altaFacturaController.factura.iva_aplicado}" required="true" />
+
+                        <h:outputLabel for="total_sin_ivs" value="Total sin iva:" />
+                        <h:outputText id="total_sin_ivs" value="#{altaFacturaController.factura.total_bruto}" />
+                        <h:outputLabel for="total_con_ivs" value="Total con iva:" />
+                        <h:outputText id="total_con_ivs" value="#{altaFacturaController.factura.total}" />
+                    </p:panelGrid>
+                    <p:commandButton value="Calcular Factura" actionListener="#{altaFacturaController.insertarFactura()}" update="facturaForm" />
+                </p:fieldset>
+            </h:form>
+        </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

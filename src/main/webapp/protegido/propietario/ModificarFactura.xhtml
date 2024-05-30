@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/template/plantilla.xhtml">
+
+            <ui:define name="content">
+                <h:form id="form">
+            <p:growl id="msgs7" showDetail="true"/>
+            <div class="card">
+                <h5>Row Editing</h5>
+                <p:dataTable id="products7" var="factura" value="#{modificarFacturaController.listaFactura}" editable="true" style="margin-bottom:20px">
+                    <p:ajax event="rowEdit" listener="#{modificarFacturaController.onRowEdit}" update=":form:msgs7"/>
+                    <p:ajax event="rowEditCancel" listener="#{modificarFacturaController.onRowCancel}" update=":form:msgs7"/>
+
+                    <p:column headerText="ID FACTURA">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{factura.n_factura}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText id="modelInput" value="#{factura.n_factura}" style="width:100%"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Cliente">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{factura.cliente.id_Cliente}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                               <p:selectOneMenu id="cboCliente" value="#{altaPresupuestoController.cliente.id_Cliente}" required="true">
+                            <f:selectItems value="#{altaPresupuestoController.listaClientes}" var="cli" itemLabel="#{cli.nombrecli}" itemValue="#{cli.id_Cliente}" />
+                        </p:selectOneMenu>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Material">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{factura.material.codigo_material}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                               <p:selectOneMenu id="cboMaterial" value="#{altaPresupuestoController.material.idMaterial}" required="true">
+                            <f:selectItems value="#{altaPresupuestoController.listaMateriales}" var="mat" itemLabel="#{mat.codigo_material}" itemValue="#{mat.idMaterial}" />
+                        </p:selectOneMenu>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="Unidades">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{factura.cantidad}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{factura.cantidad}" style="width:100%" label="Unidades"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="Iva Aplicado">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{factura.iva_aplicado}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{factura.iva_aplicado}" style="width:100%" label="Iva aplicado"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                     <p:column headerText="Precio sin iva">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{factura.total_bruto}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{factura.total_bruto}" style="width:100%" label="Precio Sin iva"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="Precio con iva">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{factura.total}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{factura.total}" style="width:100%" label="Precio con iva"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column style="width:6rem">
+                        <p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" saveTitle="Save Row"/>
+                    </p:column>
+                    <!-- Definimos el cuadro de diálogo fuera del dataTable -->
+           
+                </p:dataTable>
+            </div>
+        
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+            <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" />
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+            
+        </p:confirmDialog>
+        </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

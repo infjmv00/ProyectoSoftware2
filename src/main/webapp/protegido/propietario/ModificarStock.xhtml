@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/template/plantilla.xhtml">
+
+            <ui:define name="content">
+                <h:form id="form">
+            <p:growl id="msgs3" showDetail="true"/>
+            <div class="card">
+                <h5>Modicando stocks</h5>
+                <p:dataTable id="stock1" var="stock" value="#{modificarStockController.listaSstock}" editable="true" style="margin-bottom:20px">
+                    <p:ajax event="rowEdit" listener="#{modificarStockController.onRowEdit}" update=":form:msgs3"/>
+                    <p:ajax event="rowEditCancel" listener="#{modificarStockController.onRowCancel}" update=":form:msgs3"/>
+
+                    <p:column headerText="Identificador de stock">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{stock.idStock}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText id="modelInput" value="#{stock.idStock}" style="width:100%"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Cantidad Real">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{stock.cantidadReal}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{stock.cantidadReal}" style="width:100%" label="Cantidad Real"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Cantidad pendiente de recibir">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{stock.cantidadPteRecibir}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{stock.cantidadPteRecibir}" style="width:100%" label="Cantidad pendiente de recibir"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="Cantidad total">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{stock.cantidadTotal}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{stock.cantidadTotal}" style="width:100%" label="Cantidad total"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="Material">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{stock.material.codigo_material}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{stock.material.codigo_material}" style="width:100%" label="Material"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                                       
+                    
+                    <p:column style="width:6rem">
+                        <p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" saveTitle="Save Row"/>
+                    </p:column>
+                    <!-- Definimos el cuadro de diálogo fuera del dataTable -->
+           
+                </p:dataTable>
+            </div>
+        
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+            <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" />
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+            
+        </p:confirmDialog>
+        </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

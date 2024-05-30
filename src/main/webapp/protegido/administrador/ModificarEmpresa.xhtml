@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/template/plantilla.xhtml">
+
+            <ui:define name="content">
+               <h:form id="form">
+            <p:growl id="msgs2" showDetail="true"/>
+            <div class="card">
+                <h5>Editando Empresa</h5>
+                <p:dataTable id="empresa1" var="empresa" value="#{modificarEmpresaController.listaEmpresa}" editable="true" style="margin-bottom:20px">
+                    <p:ajax event="rowEdit" listener="#{modificarEmpresaController.onRowEdit}" update=":form:msgs2"/>
+                    <p:ajax event="rowEditCancel" listener="#{modificarEmpresaController.onRowCancel}" update=":form:msgs2"/>
+
+                    <p:column headerText="Cif">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{empresa.cif_empresa}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText id="modelInput" value="#{empresa.cif_empresa}" style="width:100%"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Nombre">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{empresa.nombre_empresa}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{empresa.nombre_empresa}" style="width:100%" label="nombre"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Direccion">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{empresa.direccion_empresa}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{empresa.direccion_empresa}" style="width:100%" label="Direccion"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="Correo electrócnico">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{empresa.email}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{empresa.email}" style="width:100%" label="Correo electronico"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="Telefono">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{empresa.telefono_empresa}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{empresa.telefono_empresa}" style="width:100%" label="Telefono"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    
+                    
+                    
+                    
+                    <p:column headerText="Activo">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{empresa.activaEmpresa}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:selectBooleanCheckbox value="#{empresa.activaEmpresa}" itemLabel="Activa"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    
+                    <p:column style="width:6rem">
+                        <p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" saveTitle="Save Row"/>
+                    </p:column>
+                    <!-- Definimos el cuadro de diálogo fuera del dataTable -->
+           
+                </p:dataTable>
+            </div>
+        
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+            <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" />
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+            
+        </p:confirmDialog>
+        </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

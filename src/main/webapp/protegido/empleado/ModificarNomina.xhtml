@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/template/plantilla.xhtml">
+
+            <ui:define name="content">
+                <h:form id="form">
+            <p:growl id="msgs13" showDetail="true"/>
+            <div class="card">
+                <h5>Row Editing</h5>
+                <p:dataTable id="products13" var="nomina" value="#{modificarNominaController.listaSueldo}" editable="true" style="margin-bottom:20px">
+                    <p:ajax event="rowEdit" listener="#{modificarNominaController.onRowEdit}" update=":form:msgs13"/>
+                    <p:ajax event="rowEditCancel" listener="#{modificarNominaController.onRowCancel}" update=":form:msgs13"/>
+
+                    <p:column headerText="DNI DEL TRSBAJADOR">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{nomina.trabajador.nifTrabajador}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText id="modelInput" value="#{nomina.trabajador.nifTrabajador}" style="width:100%"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Fecha">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{nomina.fecha}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{nomina.fecha}" style="width:100%" label="Fecha"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Bruto">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{nomina.enbruto}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{nomina.enbruto}" style="width:100%" label="Bruto"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="IRPF">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{nomina.gastosirpf}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{nomina.gastosirpf}" style="width:100%" label="Gastos IRPF"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="Gastos Seeguridad social">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{nomina.seguridad_Social}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{nomina.seguridad_Social}" style="width:100%" label="Gastos Seguridad social"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                     <p:column headerText="Primas">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{nomina.primas}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{nomina.primas}" style="width:100%" label="Primas"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                     <p:column headerText="Neto">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{nomina.total}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{nomina.total}" style="width:100%" label="neto"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    
+                    
+                    <p:column style="width:6rem">
+                        <p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" saveTitle="Save Row"/>
+                    </p:column>
+                    <!-- Definimos el cuadro de diálogo fuera del dataTable -->
+           
+                </p:dataTable>
+            </div>
+        
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+            <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" />
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+            
+        </p:confirmDialog>
+        </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <body>
+        
+        <ui:composition template="./../../WEB-INF/template/plantilla.xhtml">
+            
+            <ui:define name="content">
+                <h:form id="form">
+            <p:growl id="msgs" showDetail="true"/>
+            <div class="card">
+                <h5>Row Editing</h5>
+                <p:dataTable id="products1" var="trabajador" value="#{tablaEditarTrabajadorController.listaTrabajadores}" editable="true" style="margin-bottom:20px">
+                    <p:ajax event="rowEdit" listener="#{tablaEditarTrabajadorController.onRowEdit}" update=":form:msgs"/>
+                    <p:ajax event="rowEditCancel" listener="#{tablaEditarTrabajadorController.onRowCancel}" update=":form:msgs"/>
+
+                    <p:column headerText="Cif">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{trabajador.nifTrabajador}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText id="modelInput" value="#{trabajador.nifTrabajador}" style="width:100%"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Nombre">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{trabajador.nombre_trabajador}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{trabajador.nombre_trabajador}" style="width:100%" label="Name"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Apellidos">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{trabajador.apellidos_trabajador}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{trabajador.apellidos_trabajador}" style="width:100%" label="Apellidos"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="Direccion">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{trabajador.direccion_trabajador}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{trabajador.direccion_trabajador}" style="width:100%" label="Direccion"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="Telefono">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{trabajador.telefono_trabajador}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{trabajador.telefono_trabajador}" style="width:100%" label="Telefono"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="Fecha de nacimiento">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{trabajador.fecha_nacimiento}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:calendar id="fechaNacimiento" value="#{trabajador.fecha_nacimiento}" pattern="dd/MM/yyyy"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="Fecha de inicio de contrato">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{trabajador.fecha_inicio}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:calendar id="fechaInicioContrato" value="#{trabajador.fecha_inicio}" pattern="dd/MM/yyyy"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="Activo">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{trabajador.trabajadoractivo}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:selectBooleanCheckbox value="#{trabajador.trabajadoractivo}" itemLabel="Activo"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                   
+                    
+                    <p:column style="width:6rem">
+                        <p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" saveTitle="Save Row"/>
+                    </p:column>
+                    <!-- Definimos el cuadro de diálogo fuera del dataTable -->
+           
+                </p:dataTable>
+            </div>
+        
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+            <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" />
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+            
+        </p:confirmDialog>
+        </h:form>
+    
+            </ui:define>
+
+        </ui:composition>
+        
+    </body>
+</html>
