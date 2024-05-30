@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/template/plantilla.xhtml">
+
+            <ui:define name="content">
+                 <h1>Informcion de Propietarios</h1>
+
+    <h:form id="form">
+
+        <p:dataTable id="traTable" var="traTable" value="#{consultarTrabajadoresController.listaTrabajadores}"
+                     paginator="true" rows="10" rowsPerPageTemplate="5,10,15" filteredValue="#{consultarTrabajadoresController.listaTrabajadores}"
+                     selectionMode="single" selection="#{consultarTrabajadoresController.selectedAdmin}" 
+                     rowKey="#{traTable.idTrabajador}" widgetVar="traTable" globalFilter="#{consultarTrabajadoresController.globalFilter}">
+
+          
+
+            <p:column headerText="ID" sortBy="#{traTable.idTrabajador}" filterBy="#{traTable.idTrabajador}" filterMatchMode="contains">
+                <f:facet name="filter">
+                    <p:inputText placeholder="Filtrar por ID" onkeyup="PF('traTable').filter()" />
+                </f:facet>
+                <h:outputText value="#{traTable.idTrabajador}"/>
+            </p:column>
+
+            <p:column headerText="NIF" sortBy="#{traTable.nifTrabajador}" filterBy="#{traTable.nifTrabajador}" filterMatchMode="contains">
+                <f:facet name="filter">
+                    <p:inputText placeholder="Filtrar por NIF" onkeyup="PF('traTable').filter()" />
+                </f:facet>
+                <h:outputText value="#{traTable.nifTrabajador}"/>
+            </p:column>
+
+            <p:column headerText="Nombre del propietario" sortBy="#{traTable.nombre_trabajador}" filterBy="#{traTable.nombre_trabajador}" filterMatchMode="contains">
+                <f:facet name="filter">
+                    <p:inputText placeholder="Filtrar por Nombre" onkeyup="PF('traTable').filter()" />
+                </f:facet>
+                <h:outputText value="#{traTable.nombre_trabajador}"/>
+            </p:column>
+
+            <p:column headerText="Email" sortBy="#{traTable.e_mailtrabajador}" filterBy="#{traTable.e_mailtrabajador}" filterMatchMode="contains">
+                <f:facet name="filter">
+                    <p:inputText placeholder="Filtrar por Email" onkeyup="PF('traTable').filter()" />
+                </f:facet>
+                <h:outputText value="#{traTable.e_mailtrabajador}"/>
+            </p:column>
+
+            <p:column headerText="Teléfono" sortBy="#{traTable.telefono_trabajador}" filterBy="#{traTable.telefono_trabajador}" filterMatchMode="contains">
+                <f:facet name="filter">
+                    <p:inputText placeholder="Filtrar por Teléfono" onkeyup="PF('traTable').filter()" />
+                </f:facet>
+                <h:outputText value="#{traTable.telefono_trabajador}"/>
+            </p:column>
+
+            <p:column headerText="Dirección" sortBy="#{traTable.direccion_trabajador}" filterBy="#{traTable.direccion_trabajador}" filterMatchMode="contains">
+                <f:facet name="filter">
+                    <p:inputText placeholder="Filtrar por Dirección" onkeyup="PF('traTable').filter()" />
+                </f:facet>
+                <h:outputText value="#{traTable.direccion_trabajador}"/>
+            </p:column>
+
+            
+
+            <f:facet name="footer">
+                <p:commandButton value="Limpiar Filtros" update="traTable" oncomplete="PF('traTable').clearFilters()" />
+            </f:facet>
+
+        </p:dataTable>
+    </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

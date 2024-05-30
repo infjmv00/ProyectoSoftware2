@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/template/plantilla.xhtml">
+
+            <ui:define name="content">
+                <div class="card">
+        <h:form id="trabajadorForm">
+            <p:messages id="messages" showDetail="true" closable="true"/>
+            
+            <p:fieldset legend="Datos personales">
+                <p:panelGrid columns="2">
+                    <p:outputLabel for="nifTrabajador" value="DNI:" />
+                    <p:inputText id="nifTrabajador" value="#{altaTrabajadorController.trabajador.nifTrabajador}" required="true" />
+                    
+                    <p:outputLabel for="fechaNacimiento" value="Fecha de nacimiento:" />
+                    <p:calendar id="fechaNacimiento" value="#{altaTrabajadorController.trabajador.fecha_nacimiento}" required="true" pattern="dd/MM/yyyy"/>
+                    
+                    <p:outputLabel for="nombre" value="Nombre:" />
+                    <p:inputText id="nombre" value="#{altaTrabajadorController.trabajador.nombre_trabajador}" required="true"/>
+                    
+                    <p:outputLabel for="apellidos" value="Apellidos:" />
+                    <p:inputText id="apellidos" value="#{altaTrabajadorController.trabajador.apellidos_trabajador}" required="true"/>
+                    
+                    <p:outputLabel for="direccion" value="Dirección:" />
+                    <p:inputText id="direccion" value="#{altaTrabajadorController.trabajador.direccion_trabajador}" required="true" />
+                    
+                    <p:outputLabel for="telefonoTrabajador" value="Teléfono:" />
+                    <p:inputText id="telefonoTrabajador" value="#{altaTrabajadorController.trabajador.telefono_trabajador}" required="true" />
+                    
+                    <p:outputLabel for="correoElectronico" value="Correo electrónico:" />
+                    <p:inputText id="correoElectronico" value="#{altaTrabajadorController.trabajador.e_mailtrabajador}" required="true"/>
+                    
+                    <p:outputLabel for="fechaInicioContrato" value="Fecha de inicio de contrato:" />
+                    <p:calendar id="fechaInicioContrato" value="#{altaTrabajadorController.trabajador.fecha_inicio}" required="true" pattern="dd/MM/yyyy"/>
+                      
+                    <p:outputLabel for="fechaFinContrato" value="Fecha de fin de contrato:" />
+                    <p:calendar id="fechaFinContrato" value="#{altaTrabajadorController.trabajador.fecha_fin}" pattern="dd/MM/yyyy"/>
+
+                    <div class="field col-12 md:col-4">
+                    <p:outputLabel for ="cboEmpresa" value="Empresa"/>
+                    <p:selectOneMenu id="cboEmpresa" value="#{altaTrabajadorController.empresa.idEmpresa}">
+                        <f:selectItems value="#{altaTrabajadorController.listaEmpresas}" var="emp" itemLabel="#{emp.nombre_empresa}" itemValue="#{emp.idEmpresa}" />
+                    </p:selectOneMenu>
+
+
+            </div>
+
+                    
+                    
+                    
+                    <p:selectBooleanCheckbox value="#{altaTrabajadorController.trabajador.trabajadoractivo}" itemLabel="Activo"/>
+                </p:panelGrid>
+            </p:fieldset>
+            
+            <p:fieldset legend="Datos de acceso" toggleable="true" toggleSpeed="500">
+                <p:panelGrid columns="2">
+                   
+                    
+                   <div class="field col-12 md:col-4">
+                        <p:outputLabel for ="cboRol" value="Rol"/>
+                        <p:selectOneMenu id="cboRol" value="#{altaTrabajadorController.rol.idRol}">
+                            <f:selectItems value="#{altaTrabajadorController.listaRoles}" var="rol" itemLabel="#{rol.rol}" itemValue="#{rol.idRol}" />
+                        </p:selectOneMenu>
+                   </div>
+                    
+                    <p:outputLabel for="nombreUsuario" value="Usuario:" />
+                    <p:inputText id="nombreUsuario" value="#{altaTrabajadorController.trabajador.usuario}" required="true" />
+                    
+                    <p:outputLabel for="pwd1" value="Contraseña:" />
+                    <p:password id="pwd1" value="#{altaTrabajadorController.trabajador.contrasenya}" label="Contraseña 1" required="true"/>
+
+                    
+                    <p:outputLabel for="pwd2" value="Repita la contraseña:" />
+                    <p:password id="pwd2" binding="#{pwd2}" value="#{altaTrabajadorController.trabajador.contrasenya}" label="Contraseña 2" required="true"/>
+
+                </p:panelGrid>
+               <p:commandButton value="Insertar Trabajador" actionListener="#{altaTrabajadorController.insertarTrabajador}" >
+                                 
+               </p:commandButton>
+
+            </p:fieldset>
+        </h:form>
+    </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

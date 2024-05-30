@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/template/plantilla.xhtml">
+
+            <ui:define name="content">
+               <div class="card">
+            <h:form id="trabajadorForm">
+                <p:messages id="messages" showDetail="true" closable="true"/>
+                <p:fieldset legend="Datos de la nomina">
+                    <p:panelGrid columns="2">
+                        <p:outputLabel for="cboTrabajador" value="Trabajador"/>
+                        <p:selectOneMenu id="cboTrabajador" value="#{altaNominaController.trabajador.idTrabajador}" required="true">
+                            <f:selectItems value="#{altaNominaController.listaTrabajadores}" var="tra" itemLabel="#{tra.nombre_trabajador}" itemValue="#{tra.idTrabajador}" />
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="Sueldobruto" value="Sueldo en bruto:" />
+                        <p:inputText id="Sueldobruto" value="#{altaNominaController.sueldo.enbruto}" required="true" />
+
+                        <p:outputLabel for="fechaNomina" value="Fecha de nómina:" />
+                        <p:calendar id="fechaNomina" value="#{altaNominaController.sueldo.fecha}" required="true" pattern="dd/MM/yyyy"/>
+
+                        <p:outputLabel for="gastosirpf" value="Gastos IRPF:" />
+                        <p:inputText id="gastosirpf" value="#{altaNominaController.sueldo.gastosirpf}" required="true"/>
+
+                        <p:outputLabel for="gastosseguridadsocial" value="Gasto Seguridad Social:" />
+                        <p:inputText id="gastosseguridadsocial" value="#{altaNominaController.sueldo.seguridad_Social}" required="true"/>
+
+                        <p:outputLabel for="primas" value="Primas:" />
+                        <p:inputText id="primas" value="#{altaNominaController.sueldo.primas}" required="true" />
+
+                        <h:outputLabel for="total" value="Total:" />
+                        <h:outputText id="total" value="#{altaNominaController.sueldo.total}" />
+                    </p:panelGrid>
+                    <p:commandButton value="Calcular" actionListener="#{altaNominaController.insertarNomina}" update="trabajadorForm" />
+                </p:fieldset>
+            </h:form>
+        </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

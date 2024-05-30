@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/template/plantilla.xhtml">
+
+            <ui:define name="content">
+                <div class="card">
+        <h:form id="stockForm">
+            <p:messages id="messages" showDetail="true" closable="true"/>
+            
+            <p:fieldset legend="Datos de stock">
+                <p:panelGrid columns="2">
+                    <p:outputLabel for="cantidadReal" value="Cantidad Real:" />
+                    <h:outputText id="cantidadReal" value="#{altaStockController.stock.cantidadReal}"  />
+                    
+                    
+                    
+                    <p:outputLabel for="cantidadpendiente" value="Cantidad pendiente:" />
+                    <h:outputText id="cantidadpendiente" value="#{altaStockController.stock.cantidadPteRecibir}"/>
+                    
+                    
+                    <p:outputLabel for="cantidadTotal" value="Cantidad pendiente:" />
+                    <h:outputText id="cantidadTotal" value="#{altaStockController.stock.cantidadTotal}"/>
+                    
+                    
+
+                    <div class="field col-12 md:col-4">
+                    <p:outputLabel for ="cboStock" value="Material"/>
+                    <p:selectOneMenu id="cboStock" value="#{altaStockController.material.idMaterial}">
+                        <f:selectItems value="#{altaStockController.listaMateriales}" var="mat" itemLabel="#{mat.codigo_material}" itemValue="#{mat.idMaterial}" />
+                    </p:selectOneMenu>
+
+
+            </div>
+                </p:panelGrid>
+                <p:commandButton value="Insertar Stock" actionListener="#{altaStockController.insertarStock()}" update="stockForm"/>
+
+            </p:fieldset>
+        </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/template/plantilla.xhtml">
+
+            <ui:define name="content">
+               <h1>Informcion de Proveedores</h1>
+
+    <h:form id="form">
+
+        <p:dataTable id="provTable" var="provTable" value="#{consultaInformacionProveedoresController.listaProveedores}"
+                     paginator="true" rows="10" rowsPerPageTemplate="5,10,15" filteredValue="#{consultaInformacionProveedoresController.listaProveedores}"
+                     selectionMode="single" selection="#{consultaInformacionProveedoresController.selectedProveedor}" 
+                     rowKey="#{provTable.idProveedor}" widgetVar="provTable" globalFilter="#{consultaInformacionProveedoresController.globalFilter}">
+
+          
+
+            <p:column headerText="ID" sortBy="#{provTable.idProveedor}" filterBy="#{provTable.idProveedor}" filterMatchMode="contains">
+                <f:facet name="filter">
+                    <p:inputText placeholder="Filtrar por ID" onkeyup="PF('provTable').filter()" />
+                </f:facet>
+                <h:outputText value="#{provTable.idProveedor}"/>
+            </p:column>
+
+            <p:column headerText="NIF" sortBy="#{provTable.CIFprov}" filterBy="#{provTable.CIFprov}" filterMatchMode="contains">
+                <f:facet name="filter">
+                    <p:inputText placeholder="Filtrar por NIF" onkeyup="PF('provTable').filter()" />
+                </f:facet>
+                <h:outputText value="#{provTable.CIFprov}"/>
+            </p:column>
+
+            <p:column headerText="Nombre del proveedor" sortBy="#{provTable.nombreprov}" filterBy="#{provTable.nombreprov}" filterMatchMode="contains">
+                <f:facet name="filter">
+                    <p:inputText placeholder="Filtrar por Nombre" onkeyup="PF('provTable').filter()" />
+                </f:facet>
+                <h:outputText value="#{provTable.nombreprov}"/>
+            </p:column>
+
+            <p:column headerText="Email" sortBy="#{provTable.e_mail}" filterBy="#{provTable.e_mail}" filterMatchMode="contains">
+                <f:facet name="filter">
+                    <p:inputText placeholder="Filtrar por Email" onkeyup="PF('provTable').filter()" />
+                </f:facet>
+                <h:outputText value="#{provTable.e_mail}"/>
+            </p:column>
+
+            <p:column headerText="Teléfono" sortBy="#{provTable.telefonoprov}" filterBy="#{provTable.telefonoprov}" filterMatchMode="contains">
+                <f:facet name="filter">
+                    <p:inputText placeholder="Filtrar por Teléfono" onkeyup="PF('provTable').filter()" />
+                </f:facet>
+                <h:outputText value="#{provTable.telefonoprov}"/>
+            </p:column>
+
+            <p:column headerText="Dirección" sortBy="#{provTable.direccion}" filterBy="#{provTable.direccion}" filterMatchMode="contains">
+                <f:facet name="filter">
+                    <p:inputText placeholder="Filtrar por Dirección" onkeyup="PF('provTable').filter()" />
+                </f:facet>
+                <h:outputText value="#{provTable.direccion}"/>
+            </p:column>
+
+            
+
+            <f:facet name="footer">
+                <p:commandButton value="Limpiar Filtros" update="provTable" oncomplete="PF('provTable').clearFilters()" />
+            </f:facet>
+
+        </p:dataTable>
+    </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
