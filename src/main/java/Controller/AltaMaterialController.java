@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -55,6 +57,7 @@ public class AltaMaterialController implements Serializable {
             material.setFamilia(familia);
             materialEJB.create(material);
             System.out.println("Material con id "+material.getIdMaterial()+" creado correctamente");
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Familia creada correctamente "+material.getIdMaterial()));
             
         } catch(Exception e){
             System.out.println("Error al insertar material: "+e.getMessage());

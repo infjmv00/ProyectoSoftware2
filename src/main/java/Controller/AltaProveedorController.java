@@ -10,6 +10,8 @@ import Model.Proveedor;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -39,6 +41,7 @@ public class AltaProveedorController implements Serializable {
             
             proveedorEJB.create(proveedor);
             System.out.println("Proveeodr insertado correctamente con: "+proveedor.getIdProveedor());
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Proveedor creado correctamente "+proveedor.getIdProveedor()));
         } catch(Exception e){
             System.out.println("Erro al insertar proveedor: "+e.getMessage());
         }
