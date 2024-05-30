@@ -17,9 +17,13 @@ import java.util.List;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.primefaces.PrimeFaces;
 
 /**
  *
@@ -27,7 +31,7 @@ import javax.inject.Named;
  */
 
 @Named
-@ViewScoped
+@SessionScoped
 public class AltaTrabajadorController implements Serializable {
     
     @EJB
@@ -88,8 +92,12 @@ public class AltaTrabajadorController implements Serializable {
           System.out.println("aparentemente insertas");
             //trabajador.setRol(rol);
             trabajadorEJB.create(trabajador);
+            
             System.out.println(trabajador.getIdTrabajador());
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Trabajador creado correctamente "+trabajador.getIdTrabajador()));
             System.out.println(trabajador.getNombre_trabajador()+ " insertado correctamente");
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Stock creado correctamente "+trabajador.getNombre_trabajador()));
+           
         } catch(Exception e){
             
             System.out.println("Error al insertar trabajador en la base de datos "+ e.getMessage() );

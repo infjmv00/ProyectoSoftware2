@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -72,7 +74,8 @@ public class AltaFacturaController implements Serializable {
              factura.setTotal_bruto(facturaEJB.calcularTotalBrutoFactura(factura));
              factura.setTotal(facturaEJB.calcularTotalFactura(factura));
              facturaEJB.create(factura);
-             System.out.println("Presupuesto  creado correctamente con id: "+factura.getN_factura());
+             System.out.println("factura  creada correctamente con id: "+factura.getN_factura());
+             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Trabajador creado correctamente "+factura.getN_factura()));
          } catch(Exception e){
              System.out.println("Error al insertar el factura: "+e.getMessage());
          }
